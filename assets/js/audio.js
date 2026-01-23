@@ -9,7 +9,7 @@
     const playBtn = widget.querySelector("[data-audio-play]");
     const stopBtn = widget.querySelector("[data-audio-stop]");
     const volumeEl = widget.querySelector("[data-audio-volume]");
-    const VIDEO_ID = "4u0ILKKgZ-U"; // Barcelona anthem
+    const VIDEO_ID = ""; // Barcelona anthem
 
     let player;
 
