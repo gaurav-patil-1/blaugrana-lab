@@ -312,7 +312,7 @@ hr{
   content: "";
   position: absolute;
   inset: -60px -60px auto -60px;
-  height: 520px;
+  height: 670px;
   background: var(--gradient);
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
