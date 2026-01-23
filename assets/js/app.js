@@ -6,8 +6,8 @@
 (function () {
   'use strict';
 
-  const CPRUM = (window.CPRUM = window.CPRUM || {});
-  const state = (CPRUM.state = CPRUM.state || {
+  const Barca = (window.Barca = window.Barca || {});
+  const state = (Barca.state = Barca.state || {
     logging: false,
     tracepoints: {},
     pageGroup: '',
@@ -56,14 +56,14 @@
   function log(...args) {
     if (!state.logging) return;
     // Intentionally verbose so profilers can hook into console.
-    console.log('[CPRUM]', ...args);
+    console.log('[Barca]', ...args);
   }
-  CPRUM.log = log;
+  Barca.log = log;
 
   // ------------------------------------------------------------
   // DataLayer + command processing
   // ------------------------------------------------------------
-  window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+  window.BarcaDataLayer = window.BarcaDataLayer || [];
   let dlIndex = 0;
 
   function handleTag(args) {
@@ -74,7 +74,7 @@
       state.logging = Boolean(rest[0]);
       store.set('cprum-logging', state.logging ? '1' : '0');
       log('logging:', state.logging);
-      CPRUM.updateHud();
+      Barca.updateHud();
       return;
     }
 
@@ -85,7 +85,7 @@
       state.tracepoints[key] = value;
       store.setJSON('cprum-tracepoints', state.tracepoints);
       log('tracepoint:', key, value);
-      CPRUM.updateHud();
+      Barca.updateHud();
       return;
     }
 
@@ -93,7 +93,7 @@
       state.pageGroup = String(rest[0] ?? '');
       store.set('cprum-pageGroup', state.pageGroup);
       log('pageGroup:', state.pageGroup);
-      CPRUM.updateHud();
+      Barca.updateHud();
       return;
     }
 
@@ -102,20 +102,20 @@
   }
 
   function processDataLayer() {
-    while (dlIndex < window.CPRUMDataLayer.length) {
-      const args = window.CPRUMDataLayer[dlIndex++];
+    while (dlIndex < window.BarcaDataLayer.length) {
+      const args = window.BarcaDataLayer[dlIndex++];
       try {
         handleTag(args);
       } catch (e) {
-        console.warn('[CPRUM] tag error', e);
+        console.warn('[Barca] tag error', e);
       }
     }
   }
-  CPRUM.processDataLayer = processDataLayer;
+  Barca.processDataLayer = processDataLayer;
 
   // Replace (or define) cpRumTag to push + process
   window.cpRumTag = function () {
-    window.CPRUMDataLayer.push(arguments);
+    window.BarcaDataLayer.push(arguments);
     processDataLayer();
   };
 
@@ -151,8 +151,8 @@
   // ------------------------------------------------------------
   function setLastError(info) {
     state.lastError = info;
-    CPRUM.updateHud();
-    CPRUM.updateLabPanels();
+    Barca.updateHud();
+    Barca.updateLabPanels();
   }
 
   window.addEventListener(
@@ -206,10 +206,10 @@
   // ------------------------------------------------------------
   function setLastNetwork(info) {
     state.lastNetwork = info;
-    CPRUM.updateHud();
-    CPRUM.updateLabPanels();
+    Barca.updateHud();
+    Barca.updateLabPanels();
   }
-  CPRUM.setLastNetwork = setLastNetwork;
+  Barca.setLastNetwork = setLastNetwork;
 
   // Wrap fetch
   const nativeFetch = window.fetch ? window.fetch.bind(window) : null;
@@ -297,7 +297,7 @@
   }
 
   // A helper used by Error Lab: delay before executing a normal fetch.
-  CPRUM.slowFetch = function slowFetch(url, delayMs = 1200, init) {
+  Barca.slowFetch = function slowFetch(url, delayMs = 1200, init) {
     const ms = clamp(Number(delayMs) || 0, 0, 10000);
     log('slowFetch', { url, delayMs: ms });
     return new Promise((resolve, reject) => {
@@ -324,7 +324,7 @@
     log('theme', { mode, resolved: isDark ? 'dark' : 'light' });
   }
 
-  CPRUM.applyTheme = applyTheme;
+  Barca.applyTheme = applyTheme;
 
   // ------------------------------------------------------------
   // Toasts
@@ -339,7 +339,7 @@
     return c;
   }
 
-  CPRUM.toast = function toast(message, type = 'info', options = {}) {
+  Barca.toast = function toast(message, type = 'info', options = {}) {
     const container = ensureToastContainer();
     const t = document.createElement('div');
     t.className = `toast ${type}`;
@@ -379,7 +379,7 @@
     function onKey(e) {
       if (e.key === 'Escape') {
         e.preventDefault();
-        CPRUM.closeModal();
+        Barca.closeModal();
       }
       if (e.key !== 'Tab') return;
       if (e.shiftKey && document.activeElement === first) {
@@ -396,7 +396,7 @@
     setTimeout(() => first.focus(), 0);
   }
 
-  CPRUM.openModal = function openModal(options = {}) {
+  Barca.openModal = function openModal(options = {}) {
     ensureModalRoot();
 
     const title = options.title || 'Dialog';
@@ -428,7 +428,7 @@
     document.body.appendChild(overlay);
 
     function close() {
-      CPRUM.closeModal();
+      Barca.closeModal();
     }
 
     overlay.addEventListener('click', (e) => {
@@ -437,14 +437,14 @@
 
     $('.modal-close', modal).addEventListener('click', close);
 
-    CPRUM._activeModal = overlay;
+    Barca._activeModal = overlay;
     trapFocus(modal);
 
     log('modal:open', { title });
   };
 
-  CPRUM.closeModal = function closeModal() {
-    const overlay = CPRUM._activeModal;
+  Barca.closeModal = function closeModal() {
+    const overlay = Barca._activeModal;
     if (!overlay) return;
 
     const modal = $('.modal', overlay);
@@ -453,7 +453,7 @@
     }
 
     overlay.remove();
-    CPRUM._activeModal = null;
+    Barca._activeModal = null;
 
     if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
       lastFocusedEl.focus();
@@ -530,7 +530,7 @@
 
     document.addEventListener('mousemove', onMove, { passive: true });
   }
-  CPRUM.initTooltips = initTooltips;
+  Barca.initTooltips = initTooltips;
 
   // ------------------------------------------------------------
   // Accordions
@@ -559,7 +559,7 @@
       });
     });
   }
-  CPRUM.initAccordions = initAccordions;
+  Barca.initAccordions = initAccordions;
 
   // ------------------------------------------------------------
   // Tabs (keyboard accessible)
@@ -634,7 +634,7 @@
       activate(firstSelected >= 0 ? firstSelected : 0, false);
     });
   }
-  CPRUM.initTabs = initTabs;
+  Barca.initTabs = initTabs;
 
   // ------------------------------------------------------------
   // Animated counters
@@ -670,7 +670,7 @@
 
     els.forEach((el) => obs.observe(el));
   }
-  CPRUM.initCounters = initCounters;
+  Barca.initCounters = initCounters;
 
   // ------------------------------------------------------------
   // Lazy images + skeleton loading
@@ -709,7 +709,7 @@
       obs.observe(img);
     });
   }
-  CPRUM.initLazyImages = initLazyImages;
+  Barca.initLazyImages = initLazyImages;
 
   // ------------------------------------------------------------
   // Navbar: active highlighting, dropdowns, mobile menu
@@ -721,7 +721,7 @@
       a.classList.toggle('active', href === page);
     });
   }
-  CPRUM.highlightActiveNav = highlightActiveNav;
+  Barca.highlightActiveNav = highlightActiveNav;
 
   function initNav() {
     const navToggle = $('#nav-toggle');
@@ -787,35 +787,35 @@
         const current = store.get('theme', 'system');
         const next = current === 'light' ? 'dark' : current === 'dark' ? 'system' : 'light';
         applyTheme(next);
-        CPRUM.toast(`Theme: ${next}`, 'info', { ttl: 1800 });
+        Barca.toast(`Theme: ${next}`, 'info', { ttl: 1800 });
       });
     }
 
     if (hudToggle) {
-      hudToggle.addEventListener('click', () => CPRUM.toggleHud(true));
+      hudToggle.addEventListener('click', () => Barca.toggleHud(true));
     }
 
     highlightActiveNav();
-    CPRUM.updateCartBadge();
+    Barca.updateCartBadge();
   }
-  CPRUM.initNav = initNav;
+  Barca.initNav = initNav;
 
   // ------------------------------------------------------------
   // Cart badge (used by Shop page)
   // ------------------------------------------------------------
-  CPRUM.getCart = function getCart() {
+  Barca.getCart = function getCart() {
     return store.getJSON('blaugrana-cart', { items: [] });
   };
 
-  CPRUM.setCart = function setCart(cart) {
+  Barca.setCart = function setCart(cart) {
     store.setJSON('blaugrana-cart', cart);
-    CPRUM.updateCartBadge();
+    Barca.updateCartBadge();
   };
 
-  CPRUM.updateCartBadge = function updateCartBadge() {
+  Barca.updateCartBadge = function updateCartBadge() {
     const badge = $('#cart-count');
     if (!badge) return;
-    const cart = CPRUM.getCart();
+    const cart = Barca.getCart();
     const count = (cart.items || []).reduce((sum, it) => sum + (Number(it.qty) || 0), 0);
     badge.textContent = String(count);
     badge.style.display = count > 0 ? 'inline-flex' : 'none';
@@ -824,7 +824,7 @@
   // ------------------------------------------------------------
   // Debug HUD
   // ------------------------------------------------------------
-  CPRUM.initHud = function initHud() {
+  Barca.initHud = function initHud() {
     let hud = $('#cprum-hud');
     if (!hud) {
       hud = document.createElement('section');
@@ -856,27 +856,27 @@
     const btnClear = $('[data-hud-clear]', hud);
     const btnLogging = $('[data-hud-logging]', hud);
 
-    btnClose?.addEventListener('click', () => CPRUM.toggleHud(false));
+    btnClose?.addEventListener('click', () => Barca.toggleHud(false));
     btnClear?.addEventListener('click', () => {
       state.tracepoints = {};
       store.setJSON('cprum-tracepoints', {});
-      CPRUM.toast('Tracepoints cleared', 'ok', { ttl: 1600 });
-      CPRUM.updateHud();
+      Barca.toast('Tracepoints cleared', 'ok', { ttl: 1600 });
+      Barca.updateHud();
     });
     btnLogging?.addEventListener('click', () => {
       cpRumTag('logging', !state.logging);
-      CPRUM.toast(`Logging: ${!state.logging ? 'off' : 'on'}`, 'info', { ttl: 1600 });
-      CPRUM.updateHud();
+      Barca.toast(`Logging: ${!state.logging ? 'off' : 'on'}`, 'info', { ttl: 1600 });
+      Barca.updateHud();
     });
 
     document.addEventListener('keydown', (e) => {
       if (!(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'd')) return;
       e.preventDefault();
-      CPRUM.toggleHud();
+      Barca.toggleHud();
     });
   };
 
-  CPRUM.toggleHud = function toggleHud(force) {
+  Barca.toggleHud = function toggleHud(force) {
     const hud = $('#cprum-hud');
     if (!hud) return;
     const open = typeof force === 'boolean' ? force : !hud.classList.contains('open');
@@ -884,7 +884,7 @@
     log('hud:toggle', { open });
   };
 
-  CPRUM.updateHud = function updateHud() {
+  Barca.updateHud = function updateHud() {
     const hud = $('#cprum-hud');
     if (!hud) return;
 
@@ -925,7 +925,7 @@
   // ------------------------------------------------------------
   // Error/Network panels on Lab pages
   // ------------------------------------------------------------
-  CPRUM.updateLabPanels = function updateLabPanels() {
+  Barca.updateLabPanels = function updateLabPanels() {
     // Error Lab uses these data attributes; keep generic for reuse.
     $$('[data-last-error]').forEach((el) => {
       el.textContent = state.lastError ? JSON.stringify(state.lastError, null, 2) : '—';
@@ -978,7 +978,7 @@
     }
   }
 
-  CPRUM.loadPartials = async function loadPartials() {
+  Barca.loadPartials = async function loadPartials() {
     const includes = $$('[data-include]');
     await Promise.all(includes.map(loadInclude));
   };
@@ -986,7 +986,7 @@
   // ------------------------------------------------------------
   // Ready helper
   // ------------------------------------------------------------
-  CPRUM.whenReady = function whenReady(fn) {
+  Barca.whenReady = function whenReady(fn) {
     if (state.ready) return fn();
     document.addEventListener('cprum:ready', fn, { once: true });
   };
@@ -1002,24 +1002,24 @@
     // Process any queued tags from inline bootstrap
     processDataLayer();
 
-    await CPRUM.loadPartials();
+    await Barca.loadPartials();
 
     // Init common UI
-    CPRUM.initNav();
-    CPRUM.initTooltips();
-    CPRUM.initAccordions();
-    CPRUM.initTabs();
-    CPRUM.initCounters();
-    CPRUM.initLazyImages();
-    CPRUM.initHud();
+    Barca.initNav();
+    Barca.initTooltips();
+    Barca.initAccordions();
+    Barca.initTabs();
+    Barca.initCounters();
+    Barca.initLazyImages();
+    Barca.initHud();
 
     // Footer utilities
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
     // Final update
-    CPRUM.updateHud();
-    CPRUM.updateLabPanels();
+    Barca.updateHud();
+    Barca.updateLabPanels();
 
     state.ready = true;
     document.dispatchEvent(new CustomEvent('cprum:ready'));

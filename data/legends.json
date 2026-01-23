@@ -3,103 +3,109 @@
     "id": "m-2004-debut",
     "range": "2004",
     "stage": "Rise",
-    "title": "First-team debut (the spark)",
-    "summary": "A young playmaker steps into the spotlight \u2014 quick feet, quicker decisions.",
-    "detail": "This milestone is a storytelling nod to the beginning of an era. Use it to test card rendering and modal focus management. The details panel includes a tracepoint button.",
+    "title": "First-team debut for FC Barcelona",
+    "summary": "Lionel Messi makes his official debut at just 17, beginning the greatest story in Barça history.",
+    "detail": "On 16 October 2004, Messi debuted for Barcelona against Espanyol. It marked the start of an era that would redefine football and the identity of the club.",
     "stats": [
-      "Minutes: 17 (symbolic)",
-      "Position: wide/inside-forward",
-      "Vibe: fearless"
+      "Age: 17 years",
+      "Competition: La Liga",
+      "Opponent: Espanyol",
+      "Moment: Birth of a legend"
     ]
   },
   {
     "id": "m-2008-triangle",
-    "range": "2008\u20132010",
+    "range": "2008–2010",
     "stage": "Rise",
-    "title": "Triangles, tempo, and the press",
-    "summary": "Short passing + high pressure becomes a signature rhythm.",
-    "detail": "The football is a metaphor here: tight triangles and tempo shifts. In your profiler, track how filtering/searching updates the list.",
+    "title": "The rise of Guardiola’s Barcelona",
+    "summary": "Tiki-taka football, domination of possession, and Messi’s evolution into a world star.",
+    "detail": "Under Pep Guardiola, Barcelona created one of the most dominant teams in football history, winning historic trophies with Messi as the focal point.",
     "stats": [
-      "Pressing intensity: high",
-      "Passing triangles: endless",
-      "Off-ball runs: constant"
+      "Style: Tiki-taka",
+      "Major trophies: Sextuple in 2009",
+      "Messi role: False 9",
+      "Impact: Global recognition"
     ]
   },
   {
     "id": "m-2011-peak",
-    "range": "2011\u20132012",
+    "range": "2011–2012",
     "stage": "Peak",
-    "title": "Peak output season",
-    "summary": "Goal bursts, assists, and that half-space glide \u2014 a data explosion.",
-    "detail": "This entry is intentionally 'big' and wordier so the modal has more to render. It\u2019s also a good candidate for measuring layout and paint in your RUM tools.",
+    "title": "The greatest individual season",
+    "summary": "Messi breaks records and produces the most prolific scoring season ever.",
+    "detail": "In 2011–12, Messi scored an unbelievable 73 goals in all competitions, setting a new world record and confirming his status as the best player of his generation.",
     "stats": [
-      "Goals: lots",
-      "Assists: lots",
-      "Key passes: lots",
-      "Minutes: many"
+      "Goals (all competitions): 73",
+      "Goals (La Liga): 50",
+      "Assists: 29",
+      "Individual awards: Ballon d’Or"
     ]
   },
   {
     "id": "m-2013-adapt",
-    "range": "2013\u20132014",
+    "range": "2013–2014",
     "stage": "Peak",
-    "title": "Adapting to new shapes",
-    "summary": "Different systems, same gravity: defenders still collapse inward.",
-    "detail": "Use this milestone to test route-to-modal interactions and how your scripts label page groups versus sub-views.",
+    "title": "Adapting to new systems",
+    "summary": "Tactical changes around him, but Messi remains the heartbeat of the team.",
+    "detail": "Despite managerial changes and tactical shifts, Messi continued to dominate games and deliver decisive performances.",
     "stats": [
-      "Role: freer #10",
-      "Touches between lines: heavy",
-      "Defensive attention: double-teams"
+      "Role: Playmaker and scorer",
+      "Influence: Central to attack",
+      "Defensive attention: Constant double marking"
     ]
   },
   {
     "id": "m-2015-trident",
-    "range": "2014\u20132016",
+    "range": "2014–2016",
     "stage": "Peak",
-    "title": "A front line that bends defenses",
-    "summary": "Combination play, quick finishes, and assists that look like magic.",
-    "detail": "Again: storytelling over strict history. The main goal is UI variety and interaction capture.",
+    "title": "MSN: Messi, Suárez, Neymar",
+    "summary": "One of the most dangerous attacking trios in football history.",
+    "detail": "The MSN trio led Barcelona to a historic treble in 2015, combining creativity, goals, and perfect chemistry.",
     "stats": [
-      "One-twos: fast",
-      "Cutbacks: frequent",
-      "Through-balls: surgical"
+      "Treble won: 2015",
+      "MSN goals in 2015: 122",
+      "Messi role: Creator and finisher",
+      "European dominance: Champions League winners"
     ]
   },
   {
     "id": "m-2017-creative",
-    "range": "2017\u20132019",
+    "range": "2017–2019",
     "stage": "Legacy",
-    "title": "The creator phase",
-    "summary": "Deeper drops, longer passes, and playmaking that starts earlier.",
-    "detail": "This milestone represents the shift from constant sprinting to orchestration. Measure scroll + modal open for a longer list.",
+    "title": "The complete playmaker",
+    "summary": "Messi transforms into the team’s main creator and leader.",
+    "detail": "During this period, Messi dropped deeper, dictated tempo, created chances, and still remained Barcelona’s top scorer.",
     "stats": [
-      "Progressive passes: up",
-      "Carries: decisive",
-      "Free-kick danger: constant"
+      "Assists: Among Europe’s best",
+      "Free-kick goals: Frequent",
+      "Leadership: On and off the pitch"
     ]
   },
   {
     "id": "m-2020-leadership",
-    "range": "2020\u20132021",
+    "range": "2020–2021",
     "stage": "Legacy",
-    "title": "Leadership under pressure",
-    "summary": "When systems wobble, individual brilliance becomes the stabilizer.",
-    "detail": "Use this to test filtering by stage (Legacy) and searching by keywords (leadership).",
+    "title": "Carrying the club",
+    "summary": "Messi keeps Barcelona competitive during one of its most difficult transitions.",
+    "detail": "Even in challenging seasons, Messi remained the top performer and the emotional leader of the squad.",
     "stats": [
-      "Chance creation: high",
-      "Moments of rescue: frequent"
+      "Copa del Rey: Winner 2021",
+      "Goals: Team’s top scorer",
+      "Leadership: Undisputed captain"
     ]
   },
   {
     "id": "m-legacy-10",
     "range": "Legacy",
     "stage": "Legacy",
-    "title": "The #10 mythos",
-    "summary": "A cultural imprint: streets, murals, and endless highlight reels.",
-    "detail": "This entry is intentionally abstract. It\u2019s here to give the timeline a narrative arc while keeping assets copyright-safe.",
+    "title": "The greatest legend of FC Barcelona",
+    "summary": "A legacy that will define the club forever.",
+    "detail": "Lionel Messi left Barcelona as the club’s all-time top scorer and appearance maker, rewriting football history and becoming the greatest icon in Barça’s existence.",
     "stats": [
-      "Storytelling: strong",
-      "Inspiration: global"
+      "Goals for Barça: 672",
+      "Appearances: 778",
+      "Trophies won: 35",
+      "Status: Greatest player in club history"
     ]
   }
 ]

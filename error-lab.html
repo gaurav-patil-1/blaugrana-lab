@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>Blaugrana Lab — Error Lab</title>
-  <meta name="description" content="Dedicated page to intentionally trigger JavaScript errors, promise errors, resource errors, and network scenarios." />
+  <meta name="description"
+    content="Dedicated page to intentionally trigger JavaScript errors, promise errors, resource errors, and network scenarios." />
 
   <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -17,15 +19,14 @@
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-      } catch (e) {}
+      } catch (e) { }
     })();
-    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
-    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+    window.BarcaDataLayer = window.BarcaDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function () { window.BarcaDataLayer.push(arguments); };
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header" data-include="./partials/header.html"></div>
 
   <main id="main" class="main">
@@ -44,7 +45,8 @@
         </p>
 
         <div class="alert">
-          <strong>Safety:</strong> Most triggers are instant and reversible. The “stack overflow” button is controlled but may briefly freeze the tab.
+          <strong>Safety:</strong> Most triggers are instant and reversible. The “stack overflow” button is controlled
+          but may briefly freeze the tab.
         </div>
       </div>
     </section>
@@ -79,17 +81,20 @@
                   <div class="field">
                     <label for="stack-depth">Stack overflow depth (controlled)</label>
                     <input id="stack-depth" type="range" min="8000" max="35000" value="20000" />
-                    <div class="help">Depth: <strong id="stack-depth-value">20000</strong> — Higher may freeze briefly.</div>
+                    <div class="help">Depth: <strong id="stack-depth-value">20000</strong> — Higher may freeze briefly.
+                    </div>
                   </div>
 
                   <div class="btn-row" style="margin-top:10px;">
-                    <button class="btn btn-danger" id="btn-stack-uncaught" type="button">Stack overflow (uncaught)</button>
+                    <button class="btn btn-danger" id="btn-stack-uncaught" type="button">Stack overflow
+                      (uncaught)</button>
                     <button class="btn btn-danger" id="btn-stack-caught" type="button">Stack overflow (caught)</button>
                   </div>
 
                   <p class="small muted" style="margin-top:10px;">
                     “Script error” (generic message) is hard to reproduce reliably on same-origin pages.
-                    Browsers often show <code>Script error.</code> when a cross-origin script throws without CORS headers.
+                    Browsers often show <code>Script error.</code> when a cross-origin script throws without CORS
+                    headers.
                     This site stays same-origin by default; see README for notes.
                   </p>
                 </div>
@@ -110,11 +115,13 @@
 
                   <div class="btn-row">
                     <button class="btn" id="btn-fetch-reject-handled" type="button">Rejected fetch (handled)</button>
-                    <button class="btn btn-danger" id="btn-fetch-reject-unhandled" type="button">Rejected fetch (unhandled)</button>
+                    <button class="btn btn-danger" id="btn-fetch-reject-unhandled" type="button">Rejected fetch
+                      (unhandled)</button>
                   </div>
 
                   <p class="small muted" style="margin-top:10px;">
-                    The rejected fetch uses <code>https://example.invalid</code> (reserved TLD) so it should fail consistently.
+                    The rejected fetch uses <code>https://example.invalid</code> (reserved TLD) so it should fail
+                    consistently.
                   </p>
                 </div>
               </div>
@@ -128,13 +135,17 @@
                   <div class="grid grid-2">
                     <div>
                       <div class="small muted">Broken image preview</div>
-                      <img id="broken-img" src="./assets/img/illustrations/ball.svg" alt="Preview image used for the broken image trigger" style="width:100%; height:200px; object-fit: contain; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);"/>
+                      <img id="broken-img" src="./assets/img/illustrations/ball.svg"
+                        alt="Preview image used for the broken image trigger"
+                        style="width:100%; height:200px; object-fit: contain; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);" />
                     </div>
                     <div>
                       <div class="btn-row">
                         <button class="btn btn-danger" id="btn-img-404" type="button">Broken image load (404)</button>
-                        <button class="btn btn-danger" id="btn-script-404" type="button">Script load error (inject &lt;script&gt;)</button>
-                        <button class="btn btn-danger" id="btn-css-404" type="button">CSS load error (inject &lt;link&gt;)</button>
+                        <button class="btn btn-danger" id="btn-script-404" type="button">Script load error (inject
+                          &lt;script&gt;)</button>
+                        <button class="btn btn-danger" id="btn-css-404" type="button">CSS load error (inject
+                          &lt;link&gt;)</button>
                       </div>
                       <p class="small muted" style="margin-top:10px;">
                         Resource errors should appear in the Network panel. The global <code>window.onerror</code>
@@ -165,7 +176,8 @@
                   </div>
 
                   <p class="small muted" style="margin-top:10px;">
-                    This site wraps <code>fetch</code> and <code>XMLHttpRequest</code> to store the last request in the Debug HUD.
+                    This site wraps <code>fetch</code> and <code>XMLHttpRequest</code> to store the last request in the
+                    Debug HUD.
                   </p>
                 </div>
               </div>
@@ -223,7 +235,8 @@ Tracepoints:
 <span data-debug-tracepoints>—</span></pre>
 
             <div class="alert" style="margin-top:12px;">
-              <strong>Note:</strong> To test “script error” (generic), you typically need a cross-origin script without CORS.
+              <strong>Note:</strong> To test “script error” (generic), you typically need a cross-origin script without
+              CORS.
               This playground keeps everything local/same-origin by default for safety and portability.
             </div>
 
@@ -240,4 +253,5 @@ Tracepoints:
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/error-lab.js" defer></script>
 </body>
+
 </html>

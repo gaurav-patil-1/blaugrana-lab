@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>Blaugrana Lab — Shop</title>
-  <meta name="description" content="Fake shop with product cards, cart drawer (localStorage), and checkout form validation." />
+  <meta name="description"
+    content="Fake shop with product cards, cart drawer (localStorage), and checkout form validation." />
 
   <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -17,15 +19,14 @@
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-      } catch (e) {}
+      } catch (e) { }
     })();
-    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
-    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+    window.BarcaDataLayer = window.BarcaDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function () { window.BarcaDataLayer.push(arguments); };
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header" data-include="./partials/header.html"></div>
 
   <main id="main" class="main">
@@ -46,7 +47,7 @@
         <div class="btn-row">
           <button class="btn btn-primary" id="open-cart" type="button">Open cart</button>
           <button class="btn btn-ghost" type="button" data-tooltip="Toggles logging via the DataLayer"
-            onclick="cpRumTag('logging', !(window.CPRUM && window.CPRUM.state && window.CPRUM.state.logging));">
+            onclick="cpRumTag('logging', !(window.Barca && window.Barca.state && window.Barca.state.logging));">
             Toggle logging (cpRumTag)
           </button>
         </div>
@@ -81,17 +82,20 @@
 
               <div class="field" style="margin-top:12px;">
                 <label for="address">Address</label>
-                <input id="address" name="address" type="text" autocomplete="street-address" data-required aria-invalid="false" />
+                <input id="address" name="address" type="text" autocomplete="street-address" data-required
+                  aria-invalid="false" />
               </div>
 
               <div class="form-row" style="margin-top:12px;">
                 <div class="field">
                   <label for="city">City</label>
-                  <input id="city" name="city" type="text" autocomplete="address-level2" data-required aria-invalid="false" />
+                  <input id="city" name="city" type="text" autocomplete="address-level2" data-required
+                    aria-invalid="false" />
                 </div>
                 <div class="field">
                   <label for="zip">ZIP</label>
-                  <input id="zip" name="zip" type="text" autocomplete="postal-code" data-required aria-invalid="false" />
+                  <input id="zip" name="zip" type="text" autocomplete="postal-code" data-required
+                    aria-invalid="false" />
                 </div>
               </div>
 
@@ -100,7 +104,8 @@
               <div class="form-row">
                 <div class="field">
                   <label for="card">Card number</label>
-                  <input id="card" name="card" type="text" inputmode="numeric" placeholder="•••• •••• •••• ••••" data-required aria-invalid="false" />
+                  <input id="card" name="card" type="text" inputmode="numeric" placeholder="•••• •••• •••• ••••"
+                    data-required aria-invalid="false" />
                   <div class="help">No real processing — just validation for testing.</div>
                 </div>
                 <div class="field">
@@ -131,7 +136,8 @@
             </p>
 
             <div class="alert">
-              <strong>Tip:</strong> Add items quickly to generate many DOM updates and observe badge updates in the navbar.
+              <strong>Tip:</strong> Add items quickly to generate many DOM updates and observe badge updates in the
+              navbar.
             </div>
 
             <hr />
@@ -188,7 +194,8 @@ Tracepoints:
 
     <div class="drawer-footer">
       <div class="btn-row">
-        <button class="btn btn-ghost" type="button" onclick="localStorage.removeItem('blaugrana-cart'); location.reload();">
+        <button class="btn btn-ghost" type="button"
+          onclick="localStorage.removeItem('blaugrana-cart'); location.reload();">
           Clear cart storage
         </button>
       </div>
@@ -201,4 +208,5 @@ Tracepoints:
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/shop.js" defer></script>
 </body>
+
 </html>

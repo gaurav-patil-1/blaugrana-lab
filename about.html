@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>Blaugrana Lab — About &amp; Contact</title>
-  <meta name="description" content="About this playground and an accessible contact form with validation + fake submission." />
+  <meta name="description"
+    content="About this playground and an accessible contact form with validation + fake submission." />
 
   <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -17,15 +19,12 @@
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-      } catch (e) {}
+      } catch (e) { }
     })();
-    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
-    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header" data-include="./partials/header.html"></div>
 
   <main id="main" class="main">
@@ -80,7 +79,8 @@
                 </div>
                 <div class="field">
                   <label for="c-email">Email</label>
-                  <input id="c-email" name="email" type="email" autocomplete="email" data-required aria-invalid="false" />
+                  <input id="c-email" name="email" type="email" autocomplete="email" data-required
+                    aria-invalid="false" />
                   <div class="help">Required. Must look like an email.</div>
                 </div>
               </div>
@@ -120,10 +120,12 @@
           </div>
 
           <div class="btn-row">
-            <button class="btn" type="button" onclick="cpRumTag('tracepoint','about','clicked'); window.CPRUM && window.CPRUM.toast('Tracepoint stored in HUD','ok');">
+            <button class="btn" type="button"
+              onclick="cpRumTag('tracepoint','about','clicked'); window.Barca && window.Barca.toast('Tracepoint stored in HUD','ok');">
               Push tracepoint
             </button>
-            <button class="btn" type="button" onclick="cpRumTag('pageGroup','About/Contact'); window.CPRUM && window.CPRUM.toast('PageGroup set','info');">
+            <button class="btn" type="button"
+              onclick="cpRumTag('pageGroup','About/Contact'); window.Barca && window.Barca.toast('PageGroup set','info');">
               Set pageGroup
             </button>
           </div>
@@ -147,4 +149,5 @@ Tracepoints:
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/contact.js" defer></script>
 </body>
+
 </html>

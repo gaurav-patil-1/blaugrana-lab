@@ -1,104 +1,92 @@
-/* Blaugrana Lab — audio.js
-   "Now Playing" widget with Web Audio API (no external audio assets).
-*/
-
+// ...existing code...
 (function () {
-  'use strict';
+  "use strict";
 
-  function initAudioWidget() {
-    const root = document.querySelector('[data-audio-widget]');
-    if (!root) return;
+  function start() {
+    const widget = document.querySelector("[data-audio-widget]");
+    if (!widget) return;
 
-    const btnPlay = root.querySelector('[data-audio-play]');
-    const btnStop = root.querySelector('[data-audio-stop]');
-    const vol = root.querySelector('[data-audio-volume]');
+    const playBtn = widget.querySelector("[data-audio-play]");
+    const stopBtn = widget.querySelector("[data-audio-stop]");
+    const volumeEl = widget.querySelector("[data-audio-volume]");
+    const VIDEO_ID = "4u0ILKKgZ-U"; // Barcelona anthem
 
-    let ctx = null;
-    let intervalId = null;
-    let step = 0;
-    let gain = null;
+    let player;
 
-    const tempo = 120; // BPM-ish (used for interval)
-    const intervalMs = Math.round((60_000 / tempo) / 2); // eighth-notes
-
-    // A small "training" motif (in Hz). Not an actual song.
-    const scale = [261.63, 293.66, 311.13, 349.23, 392.0, 466.16]; // C D Eb F G Bb
-    const motif = [0, 2, 4, 5, 4, 2, 0, 2, 4, 2, 0, 1, 2, 4, 5, 4];
-
-    function ensureContext() {
-      if (ctx) return;
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-      gain = ctx.createGain();
-      gain.gain.value = Number(vol?.value || 0.25);
-      gain.connect(ctx.destination);
+    function initPlayer() {
+      if (player || !window.YT || !YT.Player) return;
+      player = new YT.Player("yt-audio-player", {
+        height: "1",
+        width: "1",
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          fs: 0,
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+        },
+        events: {
+          onReady: function () {
+            try {
+              player.unMute();
+              player.setVolume(Number(volumeEl.value) || 25);
+            } catch (_) {}
+          },
+        },
+      });
     }
 
-    function ping(freq, when = 0) {
-      if (!ctx || !gain) return;
-
-      const osc = ctx.createOscillator();
-      const g = ctx.createGain();
-
-      // Soft envelope to avoid clicks
-      g.gain.setValueAtTime(0.0001, ctx.currentTime + when);
-      g.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + when + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + when + 0.18);
-
-      osc.frequency.value = freq;
-      osc.type = 'triangle';
-
-      osc.connect(g);
-      g.connect(gain);
-
-      osc.start(ctx.currentTime + when);
-      osc.stop(ctx.currentTime + when + 0.2);
+    function onYouTubeIframeAPIReadyLocal() {
+      initPlayer();
     }
 
-    function play() {
-      ensureContext();
-      if (!ctx) return;
-
-      // Resume on user gesture
-      ctx.resume?.();
-
-      if (intervalId) return;
-
-      const track = root.querySelector('.audio-track');
-      if (track) track.textContent = 'Training Tones';
-      step = 0;
-
-      intervalId = setInterval(() => {
-        const idx = motif[step % motif.length];
-        const freq = scale[idx % scale.length];
-        // Add tiny variation for realism.
-        const wobble = 1 + (Math.sin(step / 3) * 0.002);
-        ping(freq * wobble);
-        step++;
-      }, intervalMs);
-
-      if (window.CPRUM?.log) window.CPRUM.log('audio:play', { intervalMs });
-    }
-
-    function stop() {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
+    // Controls
+    playBtn.addEventListener("click", function () {
+      if (!player) initPlayer();
+      if (player && player.playVideo) {
+        player.unMute();
+        player.playVideo();
       }
-      if (window.CPRUM?.log) window.CPRUM.log('audio:stop');
-    }
-
-    btnPlay?.addEventListener('click', play);
-    btnStop?.addEventListener('click', stop);
-
-    vol?.addEventListener('input', () => {
-      const v = Number(vol.value || 0.25);
-      if (gain) gain.gain.value = v;
     });
 
-    // Stop if user navigates away (page unload)
-    window.addEventListener('pagehide', stop);
+    stopBtn.addEventListener("click", function () {
+      if (player && player.stopVideo) {
+        player.stopVideo();
+      }
+    });
+
+    volumeEl.addEventListener("input", function () {
+      if (player && player.setVolume) {
+        player.setVolume(Number(volumeEl.value));
+      }
+    });
+
+    // Load YT API
+    function attachAPIReady(handler) {
+      if (typeof window.onYouTubeIframeAPIReady === "function") {
+        const prev = window.onYouTubeIframeAPIReady;
+        window.onYouTubeIframeAPIReady = function () {
+          try {
+            prev();
+          } catch (_) {}
+          handler();
+        };
+      } else {
+        window.onYouTubeIframeAPIReady = handler;
+      }
+    }
+
+    if (!window.YT || !window.YT.Player) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+      attachAPIReady(onYouTubeIframeAPIReadyLocal);
+    } else {
+      onYouTubeIframeAPIReadyLocal();
+    }
   }
 
-  // Wait until partials are injected
-  document.addEventListener('cprum:ready', initAudioWidget);
+  document.addEventListener("cprum:ready", start);
 })();

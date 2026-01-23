@@ -3,35 +3,38 @@
     <div>
       <div class="brand-name">Blaugrana Lab</div>
       <p class="muted small" style="margin-top:8px;">
-        A Barcelona-inspired, football-themed static playground for profiling tools.
-        No official logos, no copyrighted photos.
+        A fan-made FC Barcelona tribute site celebrating the club’s history and Lionel Messi’s legendary legacy.
+        Created for educational and non-commercial use.
       </p>
-      <p class="muted small">© <span id="year">2026</span> • Static demo</p>
+      <p class="muted small">© <span id="year">2026</span> • Fan tribute site</p>
     </div>
 
     <div class="footer-links" aria-label="Footer links">
-      <a href="./error-lab.html">Error Lab</a>
-      <a href="./performance-lab.html">Performance Lab</a>
-      <a href="./matchday.html">Matchday</a>
-      <a href="./shop.html">Shop</a>
+      <a href="../legends.html">Messi Legacy</a>
+      <a href="../gallery.html">Gallery</a>
+      <a href="../matchday.html">Matchday</a>
+      <a href="../shop.html">Club Store</a>
       <a href="./about.html">About / Contact</a>
     </div>
 
     <div class="audio-widget" data-audio-widget>
       <div class="audio-title">Now playing</div>
-      <div class="muted small audio-track" style="margin-bottom:10px;">Idle</div>
+      <div class="muted small audio-track" style="margin-bottom:10px;">Barça Anthem (Instrumental)</div>
       <div class="audio-controls">
         <button class="btn btn-small btn-primary" type="button" data-audio-play>Play</button>
         <button class="btn btn-small btn-ghost" type="button" data-audio-stop>Stop</button>
 
         <div class="audio-volume">
-          <label class="small muted" for="vol">Volume</label><br/>
-          <input id="vol" type="range" min="0" max="0.8" value="0.25" step="0.01" data-audio-volume />
+          <label class="small muted" for="vol">Volume</label><br />
+          <input id="vol" type="range" min="0" max="100" value="25" step="1" data-audio-volume />
         </div>
       </div>
       <p class="small muted" style="margin-top:10px;">
-        Uses the Web Audio API to generate tones (no audio files).
+        A simple audio experience to enhance the Barça fan atmosphere.
       </p>
+
+      <div id="yt-audio-player" aria-hidden="true"
+        style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
     </div>
   </div>
 </footer>

@@ -3,15 +3,15 @@
 */
 
 (function () {
-  'use strict';
+  "use strict";
 
   const els = {};
   const metrics = {
-    lastAction: '—',
+    lastAction: "—",
     lastDuration: 0,
     nodesCreated: 0,
     intervalsRunning: 0,
-    lastActionTime: '—',
+    lastActionTime: "—",
   };
 
   let computeCancel = false;
@@ -20,7 +20,7 @@
 
   function formatDuration(ms) {
     const n = Number(ms);
-    if (!Number.isFinite(n)) return '—';
+    if (!Number.isFinite(n)) return "—";
     if (n < 1) return `${n.toFixed(2)}ms`;
     if (n < 100) return `${n.toFixed(1)}ms`;
     return `${Math.round(n)}ms`;
@@ -41,25 +41,28 @@
     els.mTime.textContent = metrics.lastActionTime;
 
     // Keep Debug HUD in sync
-    window.CPRUM?.updateLabPanels?.();
+    window.Barca?.updateLabPanels?.();
   }
 
   // ---------------------------
   // Large DOM generation
   // ---------------------------
   function generateDom() {
-    const count = Math.max(500, Math.min(20000, Number(els.domCount.value) || 5000));
+    const count = Math.max(
+      500,
+      Math.min(20000, Number(els.domCount.value) || 5000)
+    );
     const container = els.domSandbox;
 
     const start = performance.now();
 
     const frag = document.createDocumentFragment();
     for (let i = 0; i < count; i++) {
-      const d = document.createElement('div');
-      d.className = 'chip';
+      const d = document.createElement("div");
+      d.className = "chip";
       d.textContent = `Node ${i + 1}`;
-      d.style.display = 'inline-flex';
-      d.style.margin = '6px';
+      d.style.display = "inline-flex";
+      d.style.margin = "6px";
       frag.appendChild(d);
     }
     container.appendChild(frag);
@@ -67,22 +70,25 @@
     const dur = performance.now() - start;
     metrics.nodesCreated += count;
     setMetric(`Generated ${count.toLocaleString()} DOM nodes`, dur);
-    cpRumTag('tracepoint', 'perf:dom', `create:${count}:${Math.round(dur)}ms`);
+    cpRumTag("tracepoint", "perf:dom", `create:${count}:${Math.round(dur)}ms`);
   }
 
   function clearDom() {
     const start = performance.now();
-    els.domSandbox.innerHTML = '';
+    els.domSandbox.innerHTML = "";
     const dur = performance.now() - start;
-    setMetric('Cleared DOM sandbox', dur);
-    cpRumTag('tracepoint', 'perf:dom', `clear:${Math.round(dur)}ms`);
+    setMetric("Cleared DOM sandbox", dur);
+    cpRumTag("tracepoint", "perf:dom", `clear:${Math.round(dur)}ms`);
   }
 
   // ---------------------------
   // Heavy computation (chunked, cancellable)
   // ---------------------------
   function startCompute() {
-    const limit = Math.max(5000, Math.min(250000, Number(els.computeLimit.value) || 60000));
+    const limit = Math.max(
+      5000,
+      Math.min(250000, Number(els.computeLimit.value) || 60000)
+    );
     computeCancel = false;
 
     els.computeStatus.textContent = `Running… up to ${limit.toLocaleString()}`;
@@ -106,9 +112,15 @@
       for (; n <= end; n++) {
         if (computeCancel) {
           const dur = performance.now() - start;
-          els.computeStatus.textContent = `Cancelled at n=${n.toLocaleString()} (found ${primes.length} primes).`;
-          setMetric('Computation cancelled', dur);
-          cpRumTag('tracepoint', 'perf:compute', `cancel:${n}:${Math.round(dur)}ms`);
+          els.computeStatus.textContent = `Cancelled at n=${n.toLocaleString()} (found ${
+            primes.length
+          } primes).`;
+          setMetric("Computation cancelled", dur);
+          cpRumTag(
+            "tracepoint",
+            "perf:compute",
+            `cancel:${n}:${Math.round(dur)}ms`
+          );
           return;
         }
         if (isPrime(n)) primes.push(n);
@@ -118,9 +130,15 @@
         setTimeout(chunk, 0);
       } else {
         const dur = performance.now() - start;
-        els.computeStatus.textContent = `Done. Found ${primes.length} primes up to ${limit.toLocaleString()}.`;
-        setMetric('Heavy computation finished', dur);
-        cpRumTag('tracepoint', 'perf:compute', `done:${limit}:${Math.round(dur)}ms`);
+        els.computeStatus.textContent = `Done. Found ${
+          primes.length
+        } primes up to ${limit.toLocaleString()}.`;
+        setMetric("Heavy computation finished", dur);
+        cpRumTag(
+          "tracepoint",
+          "perf:compute",
+          `done:${limit}:${Math.round(dur)}ms`
+        );
       }
     }
 
@@ -136,17 +154,17 @@
   // ---------------------------
   function runReflow() {
     const container = els.reflowBox;
-    container.innerHTML = '';
+    container.innerHTML = "";
 
     // Create boxes first (DOM work)
     const frag = document.createDocumentFragment();
     for (let i = 0; i < 220; i++) {
-      const b = document.createElement('div');
-      b.className = 'chip';
+      const b = document.createElement("div");
+      b.className = "chip";
       b.textContent = `Box ${i + 1}`;
-      b.style.display = 'inline-flex';
-      b.style.margin = '6px';
-      b.style.padding = '10px 12px';
+      b.style.display = "inline-flex";
+      b.style.margin = "6px";
+      b.style.padding = "10px 12px";
       frag.appendChild(b);
     }
     container.appendChild(frag);
@@ -165,7 +183,7 @@
 
     const dur = performance.now() - start;
     setMetric(`Forced layout loop (sum=${total})`, dur);
-    cpRumTag('tracepoint', 'perf:reflow', `loop:${Math.round(dur)}ms`);
+    cpRumTag("tracepoint", "perf:reflow", `loop:${Math.round(dur)}ms`);
   }
 
   // ---------------------------
@@ -183,14 +201,21 @@
 
     const dur = performance.now() - start;
     setMetric(`Busy loop ~${Math.round(ms)}ms (x=${Math.round(x)})`, dur);
-    cpRumTag('tracepoint', 'perf:longtask', `${Math.round(ms)}:${Math.round(dur)}ms`);
+    cpRumTag(
+      "tracepoint",
+      "perf:longtask",
+      `${Math.round(ms)}:${Math.round(dur)}ms`
+    );
   }
 
   // ---------------------------
   // Timers / interval storms (start/stop)
   // ---------------------------
   function startStorm() {
-    const count = Math.max(5, Math.min(300, Number(els.stormCount.value) || 80));
+    const count = Math.max(
+      5,
+      Math.min(300, Number(els.stormCount.value) || 80)
+    );
     if (intervalIds.length) stopStorm();
 
     const start = performance.now();
@@ -200,7 +225,7 @@
     for (let i = 0; i < count; i++) {
       const id = setInterval(() => {
         // lightweight work to keep timers active
-        if (i % 10 === 0) window.CPRUM?.log?.('storm:tick', i);
+        if (i % 10 === 0) window.Barca?.log?.("storm:tick", i);
       }, 50 + (i % 7) * 10);
       intervalIds.push(id);
     }
@@ -214,7 +239,11 @@
     metrics.intervalsRunning = intervalIds.length;
     const dur = performance.now() - start;
     setMetric(`Started ${count} intervals`, dur);
-    cpRumTag('tracepoint', 'perf:timers', `start:${count}:${Math.round(dur)}ms`);
+    cpRumTag(
+      "tracepoint",
+      "perf:timers",
+      `start:${count}:${Math.round(dur)}ms`
+    );
   }
 
   function stopStorm() {
@@ -227,27 +256,27 @@
 
     metrics.intervalsRunning = 0;
     const dur = performance.now() - start;
-    setMetric('Stopped timer storm', dur);
-    cpRumTag('tracepoint', 'perf:timers', `stop:${Math.round(dur)}ms`);
+    setMetric("Stopped timer storm", dur);
+    cpRumTag("tracepoint", "perf:timers", `stop:${Math.round(dur)}ms`);
   }
 
   // ---------------------------
   // Image-heavy section (lazy)
   // ---------------------------
   function toggleImages() {
-    const open = els.mediaWrap.getAttribute('data-open') !== 'true';
-    els.mediaWrap.setAttribute('data-open', open ? 'true' : 'false');
+    const open = els.mediaWrap.getAttribute("data-open") !== "true";
+    els.mediaWrap.setAttribute("data-open", open ? "true" : "false");
 
     if (!open) {
-      els.mediaGrid.innerHTML = '';
-      setMetric('Cleared media grid', 0);
+      els.mediaGrid.innerHTML = "";
+      setMetric("Cleared media grid", 0);
       return;
     }
 
     const start = performance.now();
     const imgs = [];
     for (let i = 1; i <= 48; i++) {
-      const idx = String(((i - 1) % 12) + 1).padStart(2, '0');
+      const idx = String(((i - 1) % 12) + 1).padStart(2, "0");
       imgs.push({
         src: `./assets/img/gallery/gal-${idx}.svg`,
         alt: `Gallery SVG ${idx}`,
@@ -276,54 +305,58 @@
         </div>
       `
       )
-      .join('');
+      .join("");
 
-    window.CPRUM?.initLazyImages();
+    window.Barca?.initLazyImages();
 
     const dur = performance.now() - start;
-    setMetric('Rendered image-heavy section', dur);
-    cpRumTag('tracepoint', 'perf:media', `render:${imgs.length}:${Math.round(dur)}ms`);
+    setMetric("Rendered image-heavy section", dur);
+    cpRumTag(
+      "tracepoint",
+      "perf:media",
+      `render:${imgs.length}:${Math.round(dur)}ms`
+    );
   }
 
   // ---------------------------
   // Soft navigation simulation (hash router)
   // ---------------------------
   const ROUTES = {
-    '#overview': {
-      title: 'Overview',
+    "#overview": {
+      title: "Overview",
       body: `
         <p class="muted">This is a tiny hash-based router. Clicking a route updates content without a full page reload.</p>
         <div class="alert"><strong>Profiler tip:</strong> Watch for route changes, interaction timing, and custom tracepoints.</div>
       `,
     },
-    '#dom': {
-      title: 'DOM route',
+    "#dom": {
+      title: "DOM route",
       body: `<p class="muted">This route is intentionally DOM-heavy: it adds 60 chips on every visit.</p>`,
       onEnter() {
         const frag = document.createDocumentFragment();
         for (let i = 0; i < 60; i++) {
-          const d = document.createElement('span');
-          d.className = 'chip';
+          const d = document.createElement("span");
+          d.className = "chip";
           d.textContent = `Route chip ${i + 1}`;
-          d.style.margin = '6px';
+          d.style.margin = "6px";
           frag.appendChild(d);
         }
         els.softView.appendChild(frag);
       },
     },
-    '#compute': {
-      title: 'Compute route',
+    "#compute": {
+      title: "Compute route",
       body: `<p class="muted">This route performs a small synchronous loop to create a quick performance blip.</p>`,
       onEnter() {
         const start = performance.now();
         let s = 0;
         for (let i = 0; i < 120000; i++) s += i % 7;
         const dur = performance.now() - start;
-        setMetric('Soft nav compute blip', dur);
+        setMetric("Soft nav compute blip", dur);
       },
     },
-    '#layout': {
-      title: 'Layout route',
+    "#layout": {
+      title: "Layout route",
       body: `<p class="muted">This route forces a layout read (offsetWidth) and writes style.</p>`,
       onEnter() {
         const start = performance.now();
@@ -336,7 +369,7 @@
   };
 
   function renderRoute(hash) {
-    const route = ROUTES[hash] || ROUTES['#overview'];
+    const route = ROUTES[hash] || ROUTES["#overview"];
     const start = performance.now();
 
     els.softView.innerHTML = `
@@ -347,87 +380,103 @@
     route.onEnter?.();
 
     const dur = performance.now() - start;
-    cpRumTag('tracepoint', 'softnav', hash);
+    cpRumTag("tracepoint", "softnav", hash);
     setMetric(`Soft navigation → ${hash}`, dur);
   }
 
   function initRouter() {
     const links = els.softNav.querySelectorAll('a[href^="#"]');
     links.forEach((a) => {
-      a.addEventListener('click', () => {
-        window.CPRUM?.log?.('softnav:click', a.getAttribute('href'));
+      a.addEventListener("click", () => {
+        window.Barca?.log?.("softnav:click", a.getAttribute("href"));
       });
     });
 
-    window.addEventListener('hashchange', () => renderRoute(location.hash || '#overview'));
+    window.addEventListener("hashchange", () =>
+      renderRoute(location.hash || "#overview")
+    );
 
     // initial
-    renderRoute(location.hash || '#overview');
+    renderRoute(location.hash || "#overview");
   }
 
   // ---------------------------
   // Boot
   // ---------------------------
   function boot() {
-    cpRumTag('pageGroup', 'Performance Lab');
+    cpRumTag("pageGroup", "Performance Lab");
 
     // metrics
-    els.mAction = document.getElementById('m-action');
-    els.mDuration = document.getElementById('m-duration');
-    els.mNodes = document.getElementById('m-nodes');
-    els.mIntervals = document.getElementById('m-intervals');
-    els.mTime = document.getElementById('m-time');
+    els.mAction = document.getElementById("m-action");
+    els.mDuration = document.getElementById("m-duration");
+    els.mNodes = document.getElementById("m-nodes");
+    els.mIntervals = document.getElementById("m-intervals");
+    els.mTime = document.getElementById("m-time");
 
-    document.getElementById('metrics-clear')?.addEventListener('click', () => {
-      metrics.lastAction = '—';
+    document.getElementById("metrics-clear")?.addEventListener("click", () => {
+      metrics.lastAction = "—";
       metrics.lastDuration = 0;
       metrics.nodesCreated = 0;
       metrics.intervalsRunning = 0;
-      metrics.lastActionTime = '—';
+      metrics.lastActionTime = "—";
       renderMetrics();
-      window.CPRUM?.toast('Metrics cleared', 'info', { ttl: 1600 });
+      window.Barca?.toast("Metrics cleared", "info", { ttl: 1600 });
     });
 
     // DOM
-    els.domSandbox = document.getElementById('dom-sandbox');
-    els.domCount = document.getElementById('dom-count');
-    document.getElementById('btn-dom-generate')?.addEventListener('click', generateDom);
-    document.getElementById('btn-dom-clear')?.addEventListener('click', clearDom);
+    els.domSandbox = document.getElementById("dom-sandbox");
+    els.domCount = document.getElementById("dom-count");
+    document
+      .getElementById("btn-dom-generate")
+      ?.addEventListener("click", generateDom);
+    document
+      .getElementById("btn-dom-clear")
+      ?.addEventListener("click", clearDom);
 
     // compute
-    els.computeLimit = document.getElementById('compute-limit');
-    els.computeStatus = document.getElementById('compute-status');
-    document.getElementById('btn-compute-start')?.addEventListener('click', startCompute);
-    document.getElementById('btn-compute-stop')?.addEventListener('click', stopCompute);
+    els.computeLimit = document.getElementById("compute-limit");
+    els.computeStatus = document.getElementById("compute-status");
+    document
+      .getElementById("btn-compute-start")
+      ?.addEventListener("click", startCompute);
+    document
+      .getElementById("btn-compute-stop")
+      ?.addEventListener("click", stopCompute);
 
     // reflow
-    els.reflowBox = document.getElementById('reflow-box');
-    document.getElementById('btn-reflow')?.addEventListener('click', runReflow);
+    els.reflowBox = document.getElementById("reflow-box");
+    document.getElementById("btn-reflow")?.addEventListener("click", runReflow);
 
     // busy loop
-    els.busyMs = document.getElementById('busy-ms');
-    document.getElementById('btn-busy')?.addEventListener('click', busyLoop);
+    els.busyMs = document.getElementById("busy-ms");
+    document.getElementById("btn-busy")?.addEventListener("click", busyLoop);
 
     // timers
-    els.stormCount = document.getElementById('storm-count');
-    document.getElementById('btn-storm-start')?.addEventListener('click', startStorm);
-    document.getElementById('btn-storm-stop')?.addEventListener('click', stopStorm);
+    els.stormCount = document.getElementById("storm-count");
+    document
+      .getElementById("btn-storm-start")
+      ?.addEventListener("click", startStorm);
+    document
+      .getElementById("btn-storm-stop")
+      ?.addEventListener("click", stopStorm);
 
     // media
-    els.mediaWrap = document.getElementById('media-wrap');
-    els.mediaGrid = document.getElementById('media-grid');
-    document.getElementById('btn-media-toggle')?.addEventListener('click', toggleImages);
+    els.mediaWrap = document.getElementById("media-wrap");
+    els.mediaGrid = document.getElementById("media-grid");
+    document
+      .getElementById("btn-media-toggle")
+      ?.addEventListener("click", toggleImages);
 
     // soft nav
-    els.softNav = document.getElementById('softnav');
-    els.softView = document.getElementById('softnav-view');
+    els.softNav = document.getElementById("softnav");
+    els.softView = document.getElementById("softnav-view");
     initRouter();
 
     renderMetrics();
 
     // Clean up storms on pagehide
-    window.addEventListener('pagehide', stopStorm);
+    window.addEventListener("pagehide", stopStorm);
   }
 
-  document.addEventListener('cprum:ready', boot);
+  document.addEventListener("cprum:ready", boot);
 })();

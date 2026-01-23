@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>Blaugrana Lab — Performance Lab</title>
-  <meta name="description" content="Dedicated page to generate performance work: large DOM, compute, forced reflow, long tasks, timers, and soft navigation." />
+  <meta name="description"
+    content="Dedicated page to generate performance work: large DOM, compute, forced reflow, long tasks, timers, and soft navigation." />
 
   <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -17,15 +19,14 @@
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-      } catch (e) {}
+      } catch (e) { }
     })();
-    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
-    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+    window.BarcaDataLayer = window.BarcaDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function () { window.BarcaDataLayer.push(arguments); };
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header" data-include="./partials/header.html"></div>
 
   <main id="main" class="main">
@@ -107,7 +108,8 @@
                 <input id="busy-ms" type="number" min="50" max="1200" value="300" style="width:140px;" />
                 <button class="btn btn-danger" id="btn-busy" type="button">Run busy loop</button>
               </div>
-              <p class="small muted" style="margin-top:10px;">Intentionally blocks the UI thread to produce a measurable long task.</p>
+              <p class="small muted" style="margin-top:10px;">Intentionally blocks the UI thread to produce a measurable
+                long task.</p>
             </div>
 
             <div class="card">
@@ -121,7 +123,8 @@
                 <button class="btn btn-primary" id="btn-storm-start" type="button">Start storm</button>
                 <button class="btn btn-ghost" id="btn-storm-stop" type="button">Stop</button>
               </div>
-              <p class="small muted" style="margin-top:10px;">Useful for testing timer instrumentation and CPU baseline drift.</p>
+              <p class="small muted" style="margin-top:10px;">Useful for testing timer instrumentation and CPU baseline
+                drift.</p>
             </div>
 
             <div class="card" id="media-wrap" data-open="false">
@@ -193,7 +196,8 @@
               </dl>
 
               <div class="alert" style="margin-top:12px;">
-                <strong>Profiler tip:</strong> Combine tasks: start intervals, generate 10k nodes, then trigger a busy loop.
+                <strong>Profiler tip:</strong> Combine tasks: start intervals, generate 10k nodes, then trigger a busy
+                loop.
               </div>
             </section>
 
@@ -238,4 +242,5 @@ Tracepoints:
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/performance-lab.js" defer></script>
 </body>
+
 </html>

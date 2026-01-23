@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>Blaugrana Lab — Matchday</title>
-  <meta name="description" content="Fixtures/results table with filters, sorting, and pagination." />
+  <meta name="description" content="Matchday center for FC Barcelona fixtures, results, and season performance." />
 
   <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -17,15 +18,12 @@
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-      } catch (e) {}
+      } catch (e) { }
     })();
-    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
-    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
   <div id="site-header" data-include="./partials/header.html"></div>
 
   <main id="main" class="main">
@@ -37,36 +35,39 @@
           <span>Matchday</span>
         </nav>
 
-        <h1>Matchday: fixtures &amp; results</h1>
+        <h1>Matchday: fixtures, results & history</h1>
         <p class="lead">
-          Table with search, filters, sorting, pagination, and a tiny canvas chart.
-          Data is fetched from <code>/data/fixtures.json</code>.
+          Explore FC Barcelona’s match schedule, past results, and iconic encounters across all competitions.
         </p>
 
         <div class="table-controls">
-          <input id="fixture-search" type="search" placeholder="Search opponent/competition…" aria-label="Search fixtures" />
+          <input id="fixture-search" type="search" placeholder="Search opponent or competition…"
+            aria-label="Search fixtures" />
           <select id="fixture-competition" aria-label="Filter by competition">
             <option value="all">All competitions</option>
           </select>
           <select id="fixture-status" aria-label="Filter by status">
-            <option value="all">All statuses</option>
-            <option value="Scheduled">Scheduled</option>
-            <option value="Finished">Finished</option>
+            <option value="all">All match statuses</option>
+            <option value="Scheduled">Upcoming matches</option>
+            <option value="Finished">Completed matches</option>
           </select>
           <select id="fixture-page-size" aria-label="Rows per page">
-            <option value="6">6 / page</option>
-            <option value="8" selected>8 / page</option>
-            <option value="12">12 / page</option>
+            <option value="6">6 matches per page</option>
+            <option value="8" selected>8 matches per page</option>
+            <option value="12">12 matches per page</option>
           </select>
         </div>
 
         <div class="card" style="margin-top:12px;">
           <div class="card-header">
-            <h2 class="card-title">Recent goals (mini chart)</h2>
-            <span class="chip">Canvas</span>
+            <h2 class="card-title">Goals scored in recent matches</h2>
+            <span class="chip">Season form</span>
           </div>
-          <p class="muted">Shows goals-for from the last 10 finished matches in your current filtered view.</p>
-          <canvas id="matchday-chart" style="width:100%; height:160px; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);"></canvas>
+          <p class="muted">
+            Displays goals scored by FC Barcelona in the last 10 completed matches from your current view.
+          </p>
+          <canvas id="matchday-chart"
+            style="width:100%; height:160px; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);"></canvas>
         </div>
       </div>
     </section>
@@ -79,12 +80,17 @@
           <table class="table" aria-label="Fixtures table">
             <thead>
               <tr>
-                <th><button type="button" data-sort="date">Date <span aria-hidden="true">⇅</span></button></th>
-                <th><button type="button" data-sort="opponent">Opponent <span aria-hidden="true">⇅</span></button></th>
-                <th><button type="button" data-sort="venue">Venue <span aria-hidden="true">⇅</span></button></th>
-                <th><button type="button" data-sort="competition">Competition <span aria-hidden="true">⇅</span></button></th>
-                <th>Score</th>
-                <th><button type="button" data-sort="status">Status <span aria-hidden="true">⇅</span></button></th>
+                <th><button type="button" data-sort="date">Match date <span aria-hidden="true">⇅</span></button></th>
+                <th><button type="button" data-sort="round">Matchday / Round <span aria-hidden="true">⇅</span></button>
+                </th>
+                <th><button type="button" data-sort="opponent">Opponent team <span aria-hidden="true">⇅</span></button>
+                </th>
+                <th><button type="button" data-sort="venue">Home / Away <span aria-hidden="true">⇅</span></button></th>
+                <th><button type="button" data-sort="competition">Competition <span aria-hidden="true">⇅</span></button>
+                </th>
+                <th>Final score</th>
+                <th><button type="button" data-sort="status">Match status <span aria-hidden="true">⇅</span></button>
+                </th>
               </tr>
             </thead>
             <tbody id="fixtures-body"></tbody>
@@ -92,11 +98,14 @@
         </div>
 
         <div class="pagination" id="pagination" aria-label="Pagination controls"></div>
-        <div class="small muted" id="page-info" style="margin-top:8px;">—</div>
+        <div class="small muted" id="page-info" style="margin-top:8px;">
+          Showing Barcelona’s matches for the selected filters
+        </div>
 
         <div class="alert" style="margin-top:14px;">
-          <strong>Profiler tip:</strong>
-          Sorting and pagination are great for measuring long tasks, interaction-to-paint, and DOM churn.
+          <strong>Fan note:</strong>
+          This section lets you relive FC Barcelona’s journey match by match, from legendary victories to unforgettable
+          rivalries.
         </div>
       </div>
     </section>
@@ -108,4 +117,5 @@
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/matchday.js" defer></script>
 </body>
+
 </html>
