@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>Blaugrana Lab — Home</title>
-  <meta name="description" content="A football-themed, multi-page static playground for RUM profiling and error/performance labs." />
+  <title>FC Barcelona — Home</title>
+  <meta name="description"
+    content="A fan celebration of FC Barcelona and Lionel Messi — history, legends, trophies, and iconic moments." />
 
   <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -18,16 +20,13 @@
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
         document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
-      } catch (e) {}
+      } catch (e) { }
     })();
-    // CPRUM DataLayer bootstrap
-    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
-    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <div id="site-header" data-include="./partials/header.html"></div>
 
@@ -37,36 +36,32 @@
         <div class="hero-copy">
           <div class="kicker">
             <span aria-hidden="true">⚽</span>
-            Blaugrana vibes • built for profiling
+            FC Barcelona • Legendary Spirit
           </div>
-          <h1>Kick the tires on errors, UX, and performance.</h1>
+          <h1>Welcome to the Heart of Blaugrana Football</h1>
           <p>
-            A modern, fully responsive static site inspired by a certain #10 era (colors + storytelling),
-            designed as a safe playground for your JSP/RUM scripts (Lastmile + rProfiler).
+            Discover the rich history of FC Barcelona — “Més que un club” — its unforgettable moments, all-time heroes,
+            and the legacy of Lionel Messi, the club’s greatest legend.
           </p>
 
           <div class="hero-cta">
-            <a class="btn btn-primary" href="./performance-lab.html">Open Performance Lab</a>
-            <a class="btn btn-secondary" href="./error-lab.html">Open Error Lab</a>
-            <button class="btn btn-ghost" id="cta-tracepoint" type="button" data-tooltip="Pushes cpRumTag('tracepoint', ...)">
-              Send tracepoint
+            <a class="btn btn-primary" href="./performance-lab.html">Explore Club History</a>
+            <a class="btn btn-secondary" href="./error-lab.html">Hero: Lionel Messi</a>
+            <button class="btn btn-ghost" id="cta-tracepoint" type="button" data-tooltip="Celebrate Barça History">
+              Celebrate the Legacy
             </button>
           </div>
 
           <div class="hero-badges" aria-label="Highlights">
-            <span class="badge">Static + GitHub Pages</span>
-            <span class="badge">Dark mode</span>
-            <span class="badge">Lots of UI components</span>
+            <span class="badge">Founded 1899</span>
+            <span class="badge">Camp Nou Stadium</span>
+            <span class="badge">Record Trophies & Icons</span>
           </div>
         </div>
 
         <div class="hero-art" aria-hidden="true">
-          <img
-            src="./assets/img/illustrations/hero-stadium.svg"
-            width="680"
-            height="520"
-            alt=""
-          />
+          <img src="./assets/img/illustrations/hero-stadium.svg" width="400" style="border-radius:16px;"
+            alt="Illustration of Camp Nou" />
         </div>
       </div>
     </section>
@@ -74,65 +69,72 @@
     <section class="section">
       <div class="container">
         <div class="section-title">
-          <h2>Quick stats</h2>
-          <div class="hint">Animated counters + chart for instrumentation</div>
+          <h2>Quick Club Facts</h2>
+          <div class="hint">Barcelona’s most celebrated records</div>
         </div>
 
         <div class="stats-grid">
           <div class="card">
-            <div class="stat-label">UI components</div>
-            <div class="stat-value" data-counter data-target="26">0</div>
-            <div class="small muted">Tabs, accordions, drawers, modals, toasts, tooltips…</div>
+            <div class="stat-label">Founded</div>
+            <div class="stat-value">1899</div>
+            <div class="small muted">Historic Spanish football club</div>
           </div>
           <div class="card">
-            <div class="stat-label">Lab triggers</div>
-            <div class="stat-value" data-counter data-target="18">0</div>
-            <div class="small muted">Controlled error + performance signals</div>
+            <div class="stat-label">European Cups / Champions League</div>
+            <div class="stat-value">5</div>
+            <div class="small muted">1992, 2006, 2009, 2011, 2015</div>
           </div>
           <div class="card">
-            <div class="stat-label">Fixtures loaded</div>
-            <div class="stat-value" data-counter data-target="30">0</div>
-            <div class="small muted">From <code>/data/fixtures.json</code></div>
+            <div class="stat-label">FIFA Club World Cups</div>
+            <div class="stat-value">3</div>
+            <div class="small muted">Global club competition titles</div>
           </div>
           <div class="card">
-            <div class="stat-label">Storage keys</div>
-            <div class="stat-value" data-counter data-target="4">0</div>
-            <div class="small muted">Theme, cart, logging flag, tracepoints</div>
+            <div class="stat-label">La Liga Titles</div>
+            <div class="stat-value">28+</div>
+            <div class="small muted">Domestic league success</div>
           </div>
         </div>
 
         <div class="grid grid-2" style="margin-top:14px;">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Pulse chart</h3>
-              <button class="btn btn-small btn-ghost" id="toast-demo" type="button">Toast demo</button>
+              <h3 class="card-title">Club Culture</h3>
+              <button class="btn btn-small btn-ghost" id="toast-demo" type="button">Quick Club Fact</button>
             </div>
-            <p class="muted">A simple canvas chart (no libraries). Resize the window to redraw.</p>
-            <canvas id="pulse-chart" style="width:100%; height:240px; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);"></canvas>
+            <p class="muted">
+              FC Barcelona proudly stands for its motto <strong>“Més que un club”</strong> — more than a club. It has
+              shaped football tradition with iconic players, a world-famous youth academy La Masia, and a style loved by
+              millions globally.
+              <canvas id="pulse-chart"
+                style="width:100%; height:240px; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);"></canvas>
             <p class="small muted" style="margin-top:10px;">
-              Tip: turn on verbose logging via <code>cpRumTag('logging', true)</code> and watch console output.
+              Tip: this chart can represent Barcelona’s form across last 25 la-liga seasons.
+            </p>
+
             </p>
           </div>
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Featured stories</h3>
-              <span class="chip">Original SVG</span>
+              <h3 class="card-title">Camp Nou</h3>
             </div>
-
             <div class="grid" style="gap:12px;">
               <article class="card soft">
                 <div class="card-header">
                   <div>
                     <div class="muted small">Story</div>
-                    <h3 class="card-title">The quiet art of the half‑space</h3>
+                    <h3 class="card-title">Messi and the magic of the half-space</h3>
                   </div>
                   <img src="./assets/img/illustrations/player-silhouette.svg" alt="" width="56" height="56" />
                 </div>
-                <p class="muted">A nod to the playmaking #10 era — abstracted, original, and safe to ship.</p>
+                <p class="muted">
+                  A tribute to Lionel Messi’s genius between the lines, where his vision, dribbling, and passing changed
+                  modern football forever.
+                </p>
                 <div class="btn-row">
-                  <a class="btn btn-small" href="./legends.html">Open timeline</a>
-                  <a class="btn btn-small btn-ghost" href="./gallery.html">Browse gallery</a>
+                  <a class="btn btn-small" href="./legends.html">View Messi timeline</a>
+                  <a class="btn btn-small btn-ghost" href="./gallery.html">See iconic moments</a>
                 </div>
               </article>
 
@@ -140,14 +142,17 @@
                 <div class="card-header">
                   <div>
                     <div class="muted small">Story</div>
-                    <h3 class="card-title">Matchday becomes a dataset</h3>
+                    <h3 class="card-title">Matchday at Camp Nou</h3>
                   </div>
                   <img src="./assets/img/illustrations/ball.svg" alt="" width="56" height="56" />
                 </div>
-                <p class="muted">Filter, sort, paginate — and watch your RUM scripts light up.</p>
+                <p class="muted">
+                  Experience the passion of a Barcelona matchday, from the roar of the crowd to unforgettable goals and
+                  historic victories.
+                </p>
                 <div class="btn-row">
-                  <a class="btn btn-small" href="./matchday.html">Open Matchday</a>
-                  <a class="btn btn-small btn-ghost" href="./performance-lab.html">Measure work</a>
+                  <a class="btn btn-small" href="./matchday.html">Explore matchday</a>
+                  <a class="btn btn-small btn-ghost" href="./performance-lab.html">Relive great matches</a>
                 </div>
               </article>
             </div>
@@ -160,76 +165,82 @@
     <section class="section">
       <div class="container">
         <div class="section-title">
-          <h2>Component showcase</h2>
-          <div class="hint">Tabs + accordions + forms</div>
+          <h2>Legendary Players & Story</h2>
+          <div class="hint">Icons that shaped Barca history</div>
         </div>
 
         <div class="grid grid-2">
           <div class="tabs" data-tabs>
-            <div class="tab-list" role="tablist" aria-label="Home tabs">
-              <button class="tab" role="tab" aria-selected="true">Why this exists</button>
-              <button class="tab" role="tab" aria-selected="false">DataLayer</button>
-              <button class="tab" role="tab" aria-selected="false">Try next</button>
+            <div class="tab-list" role="tablist" aria-label="History tabs">
+              <button class="tab" role="tab" aria-selected="true">Club Overview</button>
+              <button class="tab" role="tab" aria-selected="false">Messi Records</button>
+              <button class="tab" role="tab" aria-selected="false">Legacy & Culture</button>
             </div>
 
             <div class="tab-panel" role="tabpanel">
               <p>
-                This site is intentionally “busy”: lots of components, lots of interaction points,
-                and safe ways to trigger errors and performance work.
+                FC Barcelona has competed at the highest levels of Spanish and European football for over a century,
+                winning numerous national and international honours
               </p>
               <div class="alert">
-                <strong>Not affiliated:</strong> This playground is inspired by a Barcelona‑style palette and a #10 story arc,
-                but uses no club logos/crests and no copyrighted photos.
+                <strong>Educational use only:</strong> This is a non-commercial, fan-made website created strictly for
+                learning and study purposes. It may contain copyrighted images used for educational reference only and
+                is not officially affiliated with FC Barcelona or Lionel Messi.
               </div>
             </div>
 
             <div class="tab-panel" role="tabpanel" hidden>
-              <p class="muted">Supported commands:</p>
+              <p class="muted">Lionel Messi is Barcelona’s all-time top scorer with 672 goals in 778 appearances in
+                official competitions. :contentReference[oaicite:3]{index=3}</p>
               <ul>
-                <li><code>cpRumTag('logging', true/false)</code></li>
-                <li><code>cpRumTag('tracepoint', key, value)</code></li>
-                <li><code>cpRumTag('pageGroup', value)</code></li>
+                <li>Most goals for the club in history — 672 goals. :contentReference[oaicite:4]{index=4}</li>
+                <li>Most appearances for Barcelona — 778 games. :contentReference[oaicite:5]{index=5}</li>
+                <li>Record La Liga goals — 474. :contentReference[oaicite:6]{index=6}</li>
+                <li>Record assists for club — 269. :contentReference[oaicite:7]{index=7}</li>
+                <li>European Golden Shoes (won 6 times).</li>
               </ul>
-              <p class="small muted">Open the Debug HUD (bug icon in the header) to see current values.</p>
             </div>
 
             <div class="tab-panel" role="tabpanel" hidden>
-              <div class="btn-row">
-                <a class="btn btn-primary" href="./error-lab.html">Trigger errors</a>
-                <a class="btn btn-secondary" href="./performance-lab.html">Generate long tasks</a>
-                <a class="btn" href="./shop.html">Stress localStorage</a>
-              </div>
+              <p class="muted">
+                Barcelona’s identity is built on style, youth development, and a deep connection to Catalan culture.
+                Icons like Johan Cruyff, Xavi, Iniesta, and Messi have defined generations with their artistry and
+                success. :contentReference[oaicite:9]{index=9}
+              </p>
             </div>
           </div>
 
           <div class="accordion" data-accordion>
             <div class="accordion-item">
               <button class="accordion-button" aria-expanded="true" aria-controls="acc-1">
-                What’s inside?
+                Notable Honours
                 <span class="icon" aria-hidden="true">›</span>
               </button>
               <div class="accordion-panel" id="acc-1">
-                Multi-page static site, shared header/footer, dark mode, debug HUD, plus dedicated Error &amp; Performance labs.
+                Barcelona has won UEFA Champions League (5), La Liga (28+), FIFA Club World Cup (3), Copa del Rey (32+),
+                UEFA Super Cup (5), and many historic trophies.
               </div>
             </div>
 
             <div class="accordion-item">
               <button class="accordion-button" aria-expanded="false" aria-controls="acc-2">
-                How to host?
+                Messi’s Era at Barca
                 <span class="icon" aria-hidden="true">›</span>
               </button>
               <div class="accordion-panel" id="acc-2" hidden>
-                Commit to GitHub and enable GitHub Pages. Use relative paths (already done). See <code>README.md</code>.
+                Messi joined Barcelona’s La Masia academy as a teen, debuted for the first team in 2004, and became the
+                club’s greatest legend by breaking countless records.
               </div>
             </div>
 
             <div class="accordion-item">
               <button class="accordion-button" aria-expanded="false" aria-controls="acc-3">
-                Where do I change content?
+                Barca Philosophy
                 <span class="icon" aria-hidden="true">›</span>
               </button>
               <div class="accordion-panel" id="acc-3" hidden>
-                Update JSON files in <code>/data</code>, or edit the page HTML. The visuals are custom SVG in <code>/assets/img</code>.
+                “Més que un club” reflects Barcelona’s belief in identity, culture, and community — not just football
+                success.
               </div>
             </div>
           </div>
@@ -237,13 +248,12 @@
 
         <div class="card" style="margin-top:14px;">
           <div class="card-header">
-            <h3 class="card-title">One-line quickstart</h3>
-            <span class="chip">No build step</span>
+            <h3 class="card-title">Did You Know?</h3>
+            <span class="chip">Fun Facts</span>
           </div>
           <p class="muted">
-            Run a local static server so partial includes work (fetching <code>partials/header.html</code> and <code>partials/footer.html</code>):
-          </p>
-          <pre class="status-box"><code>python3 -m http.server 8080</code></pre>
+            Lionel Messi scored an unrivaled 91 goals in the 2012 calendar year and holds the record for most European
+            Golden Shoes won by any player.</p>
         </div>
 
       </div>
@@ -256,4 +266,5 @@
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/home.js" defer></script>
 </body>
+
 </html>

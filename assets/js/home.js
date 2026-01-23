@@ -14,7 +14,6 @@
     const pad = 20 * devicePixelRatio;
     const points = 36;
 
-    // Create a deterministic-ish dataset per session (still random enough).
     const seed = Math.floor(Date.now() / 10_000);
     function rand(i) {
       const x = Math.sin(seed + i * 999) * 10000;
@@ -30,10 +29,8 @@
       return Math.max(min, Math.min(max, n));
     }
 
-    // Background
     ctx.clearRect(0, 0, w, h);
 
-    // Axes
     ctx.globalAlpha = 0.6;
     ctx.lineWidth = 1 * devicePixelRatio;
     ctx.beginPath();
@@ -42,7 +39,6 @@
     ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border');
     ctx.stroke();
 
-    // Line
     ctx.globalAlpha = 1;
     ctx.lineWidth = 3 * devicePixelRatio;
     ctx.beginPath();
@@ -67,17 +63,6 @@
   }
 
   function boot() {
-    // Tag the page group for your RUM scripts
-    cpRumTag('pageGroup', 'Home');
-
-    // Example tracepoint
-    const traceBtn = document.getElementById('cta-tracepoint');
-    traceBtn?.addEventListener('click', () => {
-      cpRumTag('tracepoint', 'cta', 'home-tracepoint-click');
-      window.CPRUM?.toast('Tracepoint sent: cta=home-tracepoint-click', 'ok', { ttl: 2200 });
-    });
-
-    // Toast demo
     const toastBtn = document.getElementById('toast-demo');
     toastBtn?.addEventListener('click', () => window.CPRUM?.toast('A friendly toast for your profiler 🍞', 'info'));
 
