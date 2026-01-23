@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Blaugrana Lab — Barcelona Players</title>
+  <meta name="description"
+    content="Browse FC Barcelona’s first team players and add your favorites (stored in localStorage)." />
+
+  <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      } catch (e) { }
+    })();
+    window.BarcaDataLayer = window.BarcaDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function () { window.BarcaDataLayer.push(arguments); };
+  </script>
+</head>
+
+<body>
+  <div id="site-header" data-include="./partials/header.html"></div>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <span>Players</span>
+        </nav>
+
+        <h1>FC Barcelona Players</h1>
+        <p class="lead">
+          Explore the FC Barcelona first team squad for the 2025–26 season.
+          Add players to your favorites and build your own fan roster!
+        </p>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="open-cart" type="button">Open favorites</button>
+          <button class="btn btn-ghost" type="button" data-tooltip="Toggles logging via the DataLayer"
+            onclick="cpRumTag('logging', !(window.Barca && window.Barca.state && window.Barca.state.logging));">
+            Toggle logging
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="products-skeleton" class="card skeleton" style="height: 220px; border-radius: 18px;"></div>
+        <div id="product-grid" class="product-grid" aria-label="Player grid"></div>
+
+        <div class="card" style="margin-top:16px;">
+          <div class="card-header">
+            <h2 class="card-title">Favorites Info</h2>
+            <span class="chip">localStorage</span>
+          </div>
+
+          <p class="muted">
+            Your favorite players are saved in localStorage under <code>blaugrana-favorites</code>.
+            Reload the page and your favorites will stay here.
+          </p>
+
+          <div class="alert">
+            <strong>Tip:</strong> Add players to your favorites to create your ultimate Barça squad!
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Favorites drawer -->
+  <div class="drawer-overlay" id="cart-overlay" hidden></div>
+  <aside class="drawer" id="cart-drawer" aria-hidden="true" aria-label="Favorites drawer">
+    <header>
+      <div>
+        <div style="font-weight:950;">My favorite players</div>
+        <div class="small muted">Persists in localStorage</div>
+      </div>
+      <button class="btn btn-small" id="close-cart" type="button">Close</button>
+    </header>
+
+    <div class="drawer-body">
+      <div id="cart-items"></div>
+
+      <div class="small muted" style="margin-top:12px;">
+        Total favorites: <span id="cart-total">0</span>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <div class="btn-row">
+        <button class="btn btn-ghost" type="button"
+          onclick="localStorage.removeItem('blaugrana-favorites'); location.reload();">
+          Clear favorites
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div id="site-footer" data-include="./partials/footer.html"></div>
+
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/audio.js" defer></script>
+  <script src="./assets/js/players.js" defer></script>
+</body>
+
+</html>

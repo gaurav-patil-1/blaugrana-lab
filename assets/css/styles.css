@@ -992,11 +992,13 @@ select[aria-invalid="true"]{
 
 .product-card img{
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: 180px;              /* keeps consistent tile height */
   border-radius: 16px;
   border: 1px solid var(--border);
   background: var(--surface-2);
+
+  object-fit: contain;        /* fit the whole image inside */
+  object-position: top center;/* align from the top */
 }
 
 .product-card .price{
