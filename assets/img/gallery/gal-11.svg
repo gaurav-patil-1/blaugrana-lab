@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" role="img" aria-label="Gallery illustration 11">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d1e4f" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#8a1538" stop-opacity="0.95"/>
+    </linearGradient>
+    <radialGradient id="v" cx="50%" cy="60%" r="70%">
+      <stop offset="0" stop-color="rgba(0,0,0,0)" />
+      <stop offset="1" stop-color="rgba(0,0,0,0.25)" />
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg)"/>
+  <circle cx="569" cy="210" r="156" fill="#f5c400" opacity="0.30"/><circle cx="272" cy="207" r="87" fill="#f5c400" opacity="0.22"/><circle cx="182" cy="176" r="149" fill="#f5c400" opacity="0.24"/><circle cx="504" cy="125" r="78" fill="#f5c400" opacity="0.25"/>
+  <g><path d="M619 356 L812 261" stroke="rgba(255,255,255,0.13)" stroke-width="2" stroke-linecap="round"/><path d="M131 79 L383 -45" stroke="rgba(255,255,255,0.21)" stroke-width="2" stroke-linecap="round"/><path d="M358 239 L548 113" stroke="rgba(255,255,255,0.19)" stroke-width="3" stroke-linecap="round"/><path d="M144 6 L340 -66" stroke="rgba(255,255,255,0.12)" stroke-width="3" stroke-linecap="round"/><path d="M628 147 L812 26" stroke="rgba(255,255,255,0.18)" stroke-width="2" stroke-linecap="round"/><path d="M498 324 L723 243" stroke="rgba(255,255,255,0.16)" stroke-width="4" stroke-linecap="round"/></g>
+
+  <!-- Abstract pitch arc -->
+  <path d="M120 320c140 80 260 80 400 0" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="3"/>
+  <path d="M160 340c120 64 200 64 320 0" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3"/>
+
+  
+    <g transform="translate(201 250)" opacity="0.9">
+      <circle cx="0" cy="-55" r="16" fill="rgba(255,255,255,0.20)"/>
+      <path d="M-22 -40c12-10 32-10 44 0 2 20-3 38-15 58h-14c-12-20-17-38-15-58z" fill="rgba(255,255,255,0.14)"/>
+      <path d="M-8 18l-26 52" stroke="rgba(245,196,0,0.80)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M16 18l30 42" stroke="rgba(245,196,0,0.52)" stroke-width="12" stroke-linecap="round"/>
+    </g>
+    
+  
+    <g transform="translate(346 297)">
+      <circle cx="0" cy="0" r="18" fill="rgba(245,196,0,0.85)" stroke="rgba(0,0,0,0.20)" stroke-width="2"/>
+      <path d="M0 -10l6 5-2 8h-8l-2-8z" fill="rgba(0,0,0,0.20)"/>
+    </g>
+    
+
+  <rect width="640" height="420" rx="28" fill="url(#v)"/>
+  <rect x="18" y="18" width="604" height="384" rx="22" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)"/>
+</svg>

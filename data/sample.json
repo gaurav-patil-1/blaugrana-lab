@@ -1,0 +1,10 @@
+{
+  "message": "Sample payload OK",
+  "timestamp": "static",
+  "items": [
+    1,
+    2,
+    3,
+    4
+  ]
+}

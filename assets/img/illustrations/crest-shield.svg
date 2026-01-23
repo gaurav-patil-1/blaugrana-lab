@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Custom crest shield">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5c400" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#f5c400" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a1538"/>
+      <stop offset="1" stop-color="#1d1e4f"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 10h40v22c0 16-10.5 24.5-20 28-9.5-3.5-20-12-20-28V10z" fill="url(#bg2)" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+  <path d="M18 18h28v6H18z" fill="rgba(255,255,255,0.16)"/>
+  <path d="M18 30h28v6H18z" fill="rgba(255,255,255,0.12)"/>
+  <path d="M18 42h28v6H18z" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="32" cy="33" r="9.5" fill="url(#g2)" />
+  <path d="M30 30l4 0 0 6-4 0z" fill="rgba(0,0,0,0.22)"/>
+</svg>

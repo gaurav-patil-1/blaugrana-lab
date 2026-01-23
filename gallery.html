@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Blaugrana Lab — Gallery</title>
+  <meta name="description" content="Image grid with lightbox, lazy loading, and skeleton loaders (custom SVG images)." />
+
+  <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header" data-include="./partials/header.html"></div>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <span>Gallery</span>
+        </nav>
+
+        <h1>Gallery: custom SVG moments</h1>
+        <p class="lead">
+          Image grid with <strong>lazy loading</strong> + <strong>skeleton loaders</strong> + a keyboard-friendly lightbox.
+          Images are original SVG files stored locally (no external photos).
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tabs">
+          <div class="tab-list" role="tablist" aria-label="Gallery categories">
+            <button class="tab" role="tab" aria-selected="true">All</button>
+            <button class="tab" role="tab" aria-selected="false">Stadium</button>
+            <button class="tab" role="tab" aria-selected="false">Street</button>
+            <button class="tab" role="tab" aria-selected="false">Skills</button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel">
+            <div class="gallery-grid" data-gallery-grid data-tag="All"></div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" hidden>
+            <div class="gallery-grid" data-gallery-grid data-tag="Stadium"></div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" hidden>
+            <div class="gallery-grid" data-gallery-grid data-tag="Street"></div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" hidden>
+            <div class="gallery-grid" data-gallery-grid data-tag="Skills"></div>
+          </div>
+        </div>
+
+        <div class="alert" style="margin-top:14px;">
+          <strong>Profiler tip:</strong>
+          Lazy images intentionally add small delays (<code>data-delay</code>) so skeletons stay visible and create measurable events.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer" data-include="./partials/footer.html"></div>
+
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/audio.js" defer></script>
+  <script src="./assets/js/gallery.js" defer></script>
+</body>
+</html>

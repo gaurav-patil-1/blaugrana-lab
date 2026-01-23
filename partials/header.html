@@ -1,0 +1,55 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <img src="./assets/img/illustrations/crest-shield.svg" alt="" width="22" height="22" />
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">Blaugrana Lab</div>
+        <div class="brand-sub">Static RUM playground</div>
+      </div>
+    </div>
+
+    <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <ul class="nav-links">
+        <li><a data-nav-link href="./index.html">Home</a></li>
+        <li><a data-nav-link href="./legends.html">Legends</a></li>
+        <li><a data-nav-link href="./matchday.html">Matchday</a></li>
+        <li><a data-nav-link href="./gallery.html">Gallery</a></li>
+
+        <li>
+          <a data-nav-link href="./shop.html" class="nowrap">
+            Shop
+            <span id="cart-count" class="nav-badge" style="display:none;" aria-label="Cart items">0</span>
+          </a>
+        </li>
+
+        <li class="dropdown">
+          <button class="dropdown-toggle" type="button" data-dropdown-toggle aria-expanded="false" aria-haspopup="true">
+            Labs <span aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown-menu" role="menu" data-dropdown-menu>
+            <a data-nav-link href="./error-lab.html" role="menuitem">Error Lab</a>
+            <a data-nav-link href="./performance-lab.html" role="menuitem">Performance Lab</a>
+          </div>
+        </li>
+
+        <li><a data-nav-link href="./about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme" data-tooltip="Cycle theme: light → dark → system">
+        ◐
+      </button>
+
+      <button class="icon-btn" id="hud-toggle" type="button" aria-label="Open Debug HUD" data-tooltip="Open Debug HUD (Ctrl+Shift+D)">
+        🪲
+      </button>
+    </div>
+  </div>
+</header>

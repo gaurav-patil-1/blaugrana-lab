@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Blaugrana Lab — Error Lab</title>
+  <meta name="description" content="Dedicated page to intentionally trigger JavaScript errors, promise errors, resource errors, and network scenarios." />
+
+  <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header" data-include="./partials/header.html"></div>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <span>Error Lab</span>
+        </nav>
+
+        <h1>Error Lab</h1>
+        <p class="lead">
+          A dedicated sandbox to trigger different error classes for monitoring tools:
+          sync JS errors, promise errors, resource errors, fetch/XHR scenarios, and interaction storms.
+        </p>
+
+        <div class="alert">
+          <strong>Safety:</strong> Most triggers are instant and reversible. The “stack overflow” button is controlled but may briefly freeze the tab.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="lab-grid">
+
+          <section class="card">
+            <div class="card-header">
+              <h2 class="card-title">Triggers</h2>
+              <span class="chip">Buttons + sliders</span>
+            </div>
+
+            <div class="accordion" data-accordion>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="true" aria-controls="err-acc-1">
+                  JavaScript errors (sync)
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="err-acc-1">
+                  <div class="btn-row">
+                    <button class="btn btn-danger" id="btn-throw" type="button">throw new Error (uncaught)</button>
+                    <button class="btn btn-danger" id="btn-ref" type="button">ReferenceError (undefined var)</button>
+                    <button class="btn btn-danger" id="btn-type" type="button">TypeError (call non-function)</button>
+                    <button class="btn btn-danger" id="btn-json" type="button">JSON.parse invalid</button>
+                  </div>
+
+                  <hr />
+
+                  <div class="field">
+                    <label for="stack-depth">Stack overflow depth (controlled)</label>
+                    <input id="stack-depth" type="range" min="8000" max="35000" value="20000" />
+                    <div class="help">Depth: <strong id="stack-depth-value">20000</strong> — Higher may freeze briefly.</div>
+                  </div>
+
+                  <div class="btn-row" style="margin-top:10px;">
+                    <button class="btn btn-danger" id="btn-stack-uncaught" type="button">Stack overflow (uncaught)</button>
+                    <button class="btn btn-danger" id="btn-stack-caught" type="button">Stack overflow (caught)</button>
+                  </div>
+
+                  <p class="small muted" style="margin-top:10px;">
+                    “Script error” (generic message) is hard to reproduce reliably on same-origin pages.
+                    Browsers often show <code>Script error.</code> when a cross-origin script throws without CORS headers.
+                    This site stays same-origin by default; see README for notes.
+                  </p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="err-acc-2">
+                  Promise &amp; async errors
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="err-acc-2" hidden>
+                  <div class="btn-row">
+                    <button class="btn btn-danger" id="btn-unhandled" type="button">Unhandled Promise rejection</button>
+                    <button class="btn btn-danger" id="btn-async-throw" type="button">Async throw after await</button>
+                  </div>
+
+                  <hr />
+
+                  <div class="btn-row">
+                    <button class="btn" id="btn-fetch-reject-handled" type="button">Rejected fetch (handled)</button>
+                    <button class="btn btn-danger" id="btn-fetch-reject-unhandled" type="button">Rejected fetch (unhandled)</button>
+                  </div>
+
+                  <p class="small muted" style="margin-top:10px;">
+                    The rejected fetch uses <code>https://example.invalid</code> (reserved TLD) so it should fail consistently.
+                  </p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="err-acc-3">
+                  Resource errors (404)
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="err-acc-3" hidden>
+                  <div class="grid grid-2">
+                    <div>
+                      <div class="small muted">Broken image preview</div>
+                      <img id="broken-img" src="./assets/img/illustrations/ball.svg" alt="Preview image used for the broken image trigger" style="width:100%; height:200px; object-fit: contain; border-radius:16px; border:1px solid var(--border); background: var(--surface-2);"/>
+                    </div>
+                    <div>
+                      <div class="btn-row">
+                        <button class="btn btn-danger" id="btn-img-404" type="button">Broken image load (404)</button>
+                        <button class="btn btn-danger" id="btn-script-404" type="button">Script load error (inject &lt;script&gt;)</button>
+                        <button class="btn btn-danger" id="btn-css-404" type="button">CSS load error (inject &lt;link&gt;)</button>
+                      </div>
+                      <p class="small muted" style="margin-top:10px;">
+                        Resource errors should appear in the Network panel. The global <code>window.onerror</code>
+                        capture may not include stack traces for resource failures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="err-acc-4">
+                  Network scenarios (fetch + XHR)
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="err-acc-4" hidden>
+                  <div class="btn-row">
+                    <button class="btn btn-primary" id="btn-fetch-ok" type="button">fetch success (local JSON)</button>
+                    <button class="btn btn-danger" id="btn-fetch-404" type="button">fetch 404 (still resolves)</button>
+                    <button class="btn" id="btn-fetch-slow" type="button">slow fetch (delayed wrapper)</button>
+                  </div>
+
+                  <hr />
+
+                  <div class="btn-row">
+                    <button class="btn btn-primary" id="btn-xhr-ok" type="button">XHR success</button>
+                    <button class="btn btn-danger" id="btn-xhr-fail" type="button">XHR failure</button>
+                  </div>
+
+                  <p class="small muted" style="margin-top:10px;">
+                    This site wraps <code>fetch</code> and <code>XMLHttpRequest</code> to store the last request in the Debug HUD.
+                  </p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="err-acc-5">
+                  Interaction storms
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="err-acc-5" hidden>
+                  <div class="btn-row">
+                    <button class="btn" id="btn-scroll" type="button">Smooth scroll to target</button>
+                    <button class="btn" id="btn-focus" type="button">Focus/blur demo</button>
+                    <button class="btn btn-danger" id="btn-mousemove" type="button">Mousemove storm (6k events)</button>
+                  </div>
+
+                  <div class="field" style="margin-top:12px;">
+                    <label for="focus-input">Focusable input</label>
+                    <input id="focus-input" type="text" placeholder="Focus will land here…" />
+                    <div class="help">Useful for measuring focus/blur timing and event listeners.</div>
+                  </div>
+
+                  <div id="scroll-target" class="card soft" style="margin-top:12px;">
+                    <strong>Scroll target</strong>
+                    <p class="muted" style="margin-top:6px;">You scrolled here via <code>scrollIntoView</code>.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2 class="card-title">Status panel</h2>
+              <div class="btn-row">
+                <button class="btn btn-small btn-ghost" id="btn-clear" type="button">Clear</button>
+                <a class="btn btn-small" href="./performance-lab.html">Go to Performance Lab</a>
+              </div>
+            </div>
+
+            <div class="small muted">Last error (window.onerror / unhandledrejection)</div>
+            <pre class="status-box" data-last-error>—</pre>
+
+            <div class="small muted" style="margin-top:12px;">Last network request (fetch/XHR wrapper)</div>
+            <pre class="status-box" data-last-network>—</pre>
+
+            <hr />
+
+            <div class="small muted">Debug HUD snapshot</div>
+            <pre class="status-box" style="min-height: 140px;">
+Logging: <span data-debug-logging>—</span>
+PageGroup: <span data-debug-pagegroup>—</span>
+Tracepoints:
+<span data-debug-tracepoints>—</span></pre>
+
+            <div class="alert" style="margin-top:12px;">
+              <strong>Note:</strong> To test “script error” (generic), you typically need a cross-origin script without CORS.
+              This playground keeps everything local/same-origin by default for safety and portability.
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer" data-include="./partials/footer.html"></div>
+
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/audio.js" defer></script>
+  <script src="./assets/js/error-lab.js" defer></script>
+</body>
+</html>

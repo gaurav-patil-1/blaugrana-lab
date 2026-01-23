@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Blaugrana Lab — Performance Lab</title>
+  <meta name="description" content="Dedicated page to generate performance work: large DOM, compute, forced reflow, long tasks, timers, and soft navigation." />
+
+  <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header" data-include="./partials/header.html"></div>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <span>Performance Lab</span>
+        </nav>
+
+        <h1>Performance Lab</h1>
+        <p class="lead">
+          Generate measurable work on demand: large DOM, heavy computation, forced reflow, long tasks,
+          timers/interval storms, image-heavy rendering, and soft navigation route changes.
+        </p>
+
+        <div class="alert">
+          <strong>Safety:</strong> The busy loop intentionally blocks the main thread for a short duration.
+          Use it sparingly if you’re recording.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="lab-grid">
+
+          <section class="grid" style="gap:12px;">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Large DOM generator</h2>
+                <span class="chip">5k–20k nodes</span>
+              </div>
+              <div class="btn-row">
+                <label class="chip" for="dom-count">Nodes</label>
+                <input id="dom-count" type="number" min="500" max="20000" value="5000" style="width:140px;" />
+                <button class="btn btn-primary" id="btn-dom-generate" type="button">Generate</button>
+                <button class="btn btn-ghost" id="btn-dom-clear" type="button">Clear</button>
+              </div>
+              <div id="dom-sandbox" class="card soft" style="margin-top:12px; min-height: 120px;"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Heavy computation (cancellable)</h2>
+                <span class="chip">Chunked JS</span>
+              </div>
+              <div class="btn-row">
+                <label class="chip" for="compute-limit">Limit</label>
+                <input id="compute-limit" type="number" min="5000" max="250000" value="60000" style="width:160px;" />
+                <button class="btn btn-primary" id="btn-compute-start" type="button">Start</button>
+                <button class="btn btn-danger" id="btn-compute-stop" type="button">Stop</button>
+              </div>
+              <p class="muted" id="compute-status" style="margin-top:10px;">Idle.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Forced layout / reflow</h2>
+                <span class="chip">offsetHeight loop</span>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-primary" id="btn-reflow" type="button">Run reflow demo</button>
+              </div>
+              <div id="reflow-box" class="card soft" style="margin-top:12px; min-height: 120px;"></div>
+              <p class="small muted" style="margin-top:10px;">
+                Reads layout (<code>offsetHeight</code>) then writes style to trigger reflow work.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Long task (busy loop)</h2>
+                <span class="chip">200–500ms</span>
+              </div>
+              <div class="btn-row">
+                <label class="chip" for="busy-ms">Duration</label>
+                <input id="busy-ms" type="number" min="50" max="1200" value="300" style="width:140px;" />
+                <button class="btn btn-danger" id="btn-busy" type="button">Run busy loop</button>
+              </div>
+              <p class="small muted" style="margin-top:10px;">Intentionally blocks the UI thread to produce a measurable long task.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Timers / interval storm</h2>
+                <span class="chip">Start/stop</span>
+              </div>
+              <div class="btn-row">
+                <label class="chip" for="storm-count">Intervals</label>
+                <input id="storm-count" type="number" min="5" max="300" value="80" style="width:140px;" />
+                <button class="btn btn-primary" id="btn-storm-start" type="button">Start storm</button>
+                <button class="btn btn-ghost" id="btn-storm-stop" type="button">Stop</button>
+              </div>
+              <p class="small muted" style="margin-top:10px;">Useful for testing timer instrumentation and CPU baseline drift.</p>
+            </div>
+
+            <div class="card" id="media-wrap" data-open="false">
+              <div class="card-header">
+                <h2 class="card-title">Image-heavy section</h2>
+                <span class="chip">Lazy loaded</span>
+              </div>
+              <div class="btn-row">
+                <button class="btn" id="btn-media-toggle" type="button">Toggle media grid</button>
+              </div>
+              <div id="media-grid" class="gallery-grid" style="margin-top:12px;"></div>
+              <p class="small muted" style="margin-top:10px;">
+                Reuses local SVG images with lazy loading and randomized delays.
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Soft navigation simulation</h2>
+                <span class="chip">Hash router</span>
+              </div>
+
+              <div class="btn-row" id="softnav" aria-label="Soft navigation">
+                <a class="btn btn-small" href="#overview">#overview</a>
+                <a class="btn btn-small" href="#dom">#dom</a>
+                <a class="btn btn-small" href="#compute">#compute</a>
+                <a class="btn btn-small" href="#layout">#layout</a>
+              </div>
+
+              <div id="softnav-view" class="card soft" style="margin-top:12px;"></div>
+
+              <p class="small muted" style="margin-top:10px;">
+                This updates content without a page reload. Great for testing soft-navigation capture.
+              </p>
+            </div>
+
+          </section>
+
+          <aside class="grid" style="gap:12px;">
+            <section class="card">
+              <div class="card-header">
+                <h2 class="card-title">Metrics panel</h2>
+                <div class="btn-row">
+                  <button class="btn btn-small btn-ghost" id="metrics-clear" type="button">Clear</button>
+                </div>
+              </div>
+
+              <dl class="metric-grid">
+                <div class="metric">
+                  <dt>Last action</dt>
+                  <dd id="m-action">—</dd>
+                </div>
+                <div class="metric">
+                  <dt>Duration</dt>
+                  <dd id="m-duration">—</dd>
+                </div>
+                <div class="metric">
+                  <dt>Nodes created</dt>
+                  <dd id="m-nodes">0</dd>
+                </div>
+                <div class="metric">
+                  <dt>Intervals running</dt>
+                  <dd id="m-intervals">0</dd>
+                </div>
+                <div class="metric" style="grid-column: 1 / -1;">
+                  <dt>Last action time</dt>
+                  <dd id="m-time">—</dd>
+                </div>
+              </dl>
+
+              <div class="alert" style="margin-top:12px;">
+                <strong>Profiler tip:</strong> Combine tasks: start intervals, generate 10k nodes, then trigger a busy loop.
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-header">
+                <h2 class="card-title">Debug HUD snapshot</h2>
+                <span class="chip">DataLayer</span>
+              </div>
+              <pre class="status-box" style="min-height: 180px;">
+Logging: <span data-debug-logging>—</span>
+PageGroup: <span data-debug-pagegroup>—</span>
+Tracepoints:
+<span data-debug-tracepoints>—</span></pre>
+              <p class="small muted" style="margin-top:10px;">
+                Toggle the full HUD via the bug icon or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>.
+              </p>
+            </section>
+
+            <section class="card">
+              <div class="card-header">
+                <h2 class="card-title">Last error / network</h2>
+                <span class="chip">Shared state</span>
+              </div>
+              <div class="small muted">Last error</div>
+              <pre class="status-box" data-last-error>—</pre>
+              <div class="small muted" style="margin-top:12px;">Last network</div>
+              <pre class="status-box" data-last-network>—</pre>
+              <p class="small muted" style="margin-top:10px;">
+                These panels update automatically via the global wrappers in <code>assets/js/app.js</code>.
+              </p>
+            </section>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer" data-include="./partials/footer.html"></div>
+
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/audio.js" defer></script>
+  <script src="./assets/js/performance-lab.js" defer></script>
+</body>
+</html>

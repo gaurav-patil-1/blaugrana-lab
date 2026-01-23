@@ -1,0 +1,105 @@
+[
+  {
+    "id": "m-2004-debut",
+    "range": "2004",
+    "stage": "Rise",
+    "title": "First-team debut (the spark)",
+    "summary": "A young playmaker steps into the spotlight \u2014 quick feet, quicker decisions.",
+    "detail": "This milestone is a storytelling nod to the beginning of an era. Use it to test card rendering and modal focus management. The details panel includes a tracepoint button.",
+    "stats": [
+      "Minutes: 17 (symbolic)",
+      "Position: wide/inside-forward",
+      "Vibe: fearless"
+    ]
+  },
+  {
+    "id": "m-2008-triangle",
+    "range": "2008\u20132010",
+    "stage": "Rise",
+    "title": "Triangles, tempo, and the press",
+    "summary": "Short passing + high pressure becomes a signature rhythm.",
+    "detail": "The football is a metaphor here: tight triangles and tempo shifts. In your profiler, track how filtering/searching updates the list.",
+    "stats": [
+      "Pressing intensity: high",
+      "Passing triangles: endless",
+      "Off-ball runs: constant"
+    ]
+  },
+  {
+    "id": "m-2011-peak",
+    "range": "2011\u20132012",
+    "stage": "Peak",
+    "title": "Peak output season",
+    "summary": "Goal bursts, assists, and that half-space glide \u2014 a data explosion.",
+    "detail": "This entry is intentionally 'big' and wordier so the modal has more to render. It\u2019s also a good candidate for measuring layout and paint in your RUM tools.",
+    "stats": [
+      "Goals: lots",
+      "Assists: lots",
+      "Key passes: lots",
+      "Minutes: many"
+    ]
+  },
+  {
+    "id": "m-2013-adapt",
+    "range": "2013\u20132014",
+    "stage": "Peak",
+    "title": "Adapting to new shapes",
+    "summary": "Different systems, same gravity: defenders still collapse inward.",
+    "detail": "Use this milestone to test route-to-modal interactions and how your scripts label page groups versus sub-views.",
+    "stats": [
+      "Role: freer #10",
+      "Touches between lines: heavy",
+      "Defensive attention: double-teams"
+    ]
+  },
+  {
+    "id": "m-2015-trident",
+    "range": "2014\u20132016",
+    "stage": "Peak",
+    "title": "A front line that bends defenses",
+    "summary": "Combination play, quick finishes, and assists that look like magic.",
+    "detail": "Again: storytelling over strict history. The main goal is UI variety and interaction capture.",
+    "stats": [
+      "One-twos: fast",
+      "Cutbacks: frequent",
+      "Through-balls: surgical"
+    ]
+  },
+  {
+    "id": "m-2017-creative",
+    "range": "2017\u20132019",
+    "stage": "Legacy",
+    "title": "The creator phase",
+    "summary": "Deeper drops, longer passes, and playmaking that starts earlier.",
+    "detail": "This milestone represents the shift from constant sprinting to orchestration. Measure scroll + modal open for a longer list.",
+    "stats": [
+      "Progressive passes: up",
+      "Carries: decisive",
+      "Free-kick danger: constant"
+    ]
+  },
+  {
+    "id": "m-2020-leadership",
+    "range": "2020\u20132021",
+    "stage": "Legacy",
+    "title": "Leadership under pressure",
+    "summary": "When systems wobble, individual brilliance becomes the stabilizer.",
+    "detail": "Use this to test filtering by stage (Legacy) and searching by keywords (leadership).",
+    "stats": [
+      "Chance creation: high",
+      "Moments of rescue: frequent"
+    ]
+  },
+  {
+    "id": "m-legacy-10",
+    "range": "Legacy",
+    "stage": "Legacy",
+    "title": "The #10 mythos",
+    "summary": "A cultural imprint: streets, murals, and endless highlight reels.",
+    "detail": "This entry is intentionally abstract. It\u2019s here to give the timeline a narrative arc while keeping assets copyright-safe.",
+    "stats": [
+      "Storytelling: strong",
+      "Inspiration: global"
+    ]
+  }
+]

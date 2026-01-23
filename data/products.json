@@ -1,0 +1,74 @@
+[
+  {
+    "id": "p-kit-home",
+    "name": "Crimson-Navy Home Shirt",
+    "price": 79.0,
+    "rating": 4.8,
+    "tag": "Replica",
+    "desc": "A modern blaugrana-inspired pattern with a clean collar. (No official marks.)",
+    "img": "./assets/img/products/prod-01.svg"
+  },
+  {
+    "id": "p-kit-away",
+    "name": "Midnight Away Shirt",
+    "price": 75.0,
+    "rating": 4.6,
+    "tag": "Replica",
+    "desc": "Dark, minimal, and built for late-night matchdays and debugging sessions.",
+    "img": "./assets/img/products/prod-02.svg"
+  },
+  {
+    "id": "p-scarf",
+    "name": "Half-Space Scarf",
+    "price": 28.0,
+    "rating": 4.7,
+    "tag": "Accessory",
+    "desc": "Soft knit with abstract stripes and a golden accent stitch.",
+    "img": "./assets/img/products/prod-03.svg"
+  },
+  {
+    "id": "p-ball",
+    "name": "Training Ball (SVG Edition)",
+    "price": 22.0,
+    "rating": 4.5,
+    "tag": "Training",
+    "desc": "A playful ball design for drills, demos, and dashboards.",
+    "img": "./assets/img/products/prod-04.svg"
+  },
+  {
+    "id": "p-cap",
+    "name": "Touchline Cap",
+    "price": 19.0,
+    "rating": 4.4,
+    "tag": "Accessory",
+    "desc": "Simple cap with a custom crest shield mark (original SVG).",
+    "img": "./assets/img/products/prod-05.svg"
+  },
+  {
+    "id": "p-mug",
+    "name": "Debug Mug",
+    "price": 14.0,
+    "rating": 4.9,
+    "tag": "Desk",
+    "desc": "For those 'why is this layout shifting?' mornings.",
+    "img": "./assets/img/products/prod-06.svg"
+  },
+  {
+    "id": "p-poster",
+    "name": "Stadium Lights Poster",
+    "price": 12.0,
+    "rating": 4.3,
+    "tag": "Print",
+    "desc": "Abstract stadium glow \u2014 original vector art.",
+    "img": "./assets/img/products/prod-07.svg"
+  },
+  {
+    "id": "p-stickers",
+    "name": "Tracepoint Sticker Pack",
+    "price": 9.0,
+    "rating": 4.6,
+    "tag": "Stickers",
+    "desc": "Tiny labels for big moments: 'long task', 'error', 'route change', and more.",
+    "img": "./assets/img/products/prod-08.svg"
+  }
+]

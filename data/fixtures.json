@@ -1,0 +1,272 @@
+[
+  {
+    "id": "fx-01",
+    "date": "2025-08-15",
+    "opponent": "Seville City",
+    "venue": "Home",
+    "competition": "League",
+    "score": "0\u20130",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-02",
+    "date": "2025-08-22",
+    "opponent": "Valencia Coast",
+    "venue": "Away",
+    "competition": "Cup",
+    "score": "2\u20131",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-03",
+    "date": "2025-08-29",
+    "opponent": "Madrid White",
+    "venue": "Home",
+    "competition": "Continental",
+    "score": "1\u20131",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-04",
+    "date": "2025-09-05",
+    "opponent": "Bilbao Red",
+    "venue": "Away",
+    "competition": "League",
+    "score": "0\u20130",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-05",
+    "date": "2025-09-12",
+    "opponent": "Vigo Blue",
+    "venue": "Home",
+    "competition": "Cup",
+    "score": "4\u20133",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-06",
+    "date": "2025-09-19",
+    "opponent": "Granada Hills",
+    "venue": "Away",
+    "competition": "Continental",
+    "score": "0\u20130",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-07",
+    "date": "2025-09-26",
+    "opponent": "Sociedad North",
+    "venue": "Home",
+    "competition": "League",
+    "score": "0\u20131",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-08",
+    "date": "2025-10-03",
+    "opponent": "Betis Green",
+    "venue": "Away",
+    "competition": "Cup",
+    "score": "1\u20130",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-09",
+    "date": "2025-10-10",
+    "opponent": "Villarreal Yellow",
+    "venue": "Home",
+    "competition": "Continental",
+    "score": "4\u20131",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-10",
+    "date": "2025-10-17",
+    "opponent": "Getafe Steel",
+    "venue": "Away",
+    "competition": "League",
+    "score": "4\u20133",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-11",
+    "date": "2025-10-24",
+    "opponent": "Girona River",
+    "venue": "Home",
+    "competition": "Cup",
+    "score": "1\u20133",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-12",
+    "date": "2025-10-31",
+    "opponent": "Mallorca Island",
+    "venue": "Away",
+    "competition": "Continental",
+    "score": "4\u20132",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-13",
+    "date": "2025-11-07",
+    "opponent": "Osasuna Mountain",
+    "venue": "Home",
+    "competition": "League",
+    "score": "0\u20131",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-14",
+    "date": "2025-11-14",
+    "opponent": "Almer\u00eda Port",
+    "venue": "Away",
+    "competition": "Cup",
+    "score": "3\u20132",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-15",
+    "date": "2025-11-21",
+    "opponent": "Rayo Thunder",
+    "venue": "Home",
+    "competition": "Continental",
+    "score": "2\u20131",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-16",
+    "date": "2025-11-28",
+    "opponent": "Espanyol Neighbors",
+    "venue": "Away",
+    "competition": "League",
+    "score": "1\u20132",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-17",
+    "date": "2025-12-05",
+    "opponent": "C\u00e1diz Bay",
+    "venue": "Home",
+    "competition": "Cup",
+    "score": "0\u20130",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-18",
+    "date": "2025-12-12",
+    "opponent": "Las Palmas Sun",
+    "venue": "Away",
+    "competition": "Continental",
+    "score": "3\u20130",
+    "status": "Finished"
+  },
+  {
+    "id": "fx-19",
+    "date": "2025-12-19",
+    "opponent": "Elche Grove",
+    "venue": "Home",
+    "competition": "League",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-20",
+    "date": "2025-12-26",
+    "opponent": "Levante Waves",
+    "venue": "Away",
+    "competition": "Cup",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-21",
+    "date": "2026-01-02",
+    "opponent": "Porto Blue",
+    "venue": "Home",
+    "competition": "Continental",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-22",
+    "date": "2026-01-09",
+    "opponent": "Milan Black",
+    "venue": "Away",
+    "competition": "League",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-23",
+    "date": "2026-01-16",
+    "opponent": "Paris Stars",
+    "venue": "Home",
+    "competition": "Cup",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-24",
+    "date": "2026-01-23",
+    "opponent": "London Gunners",
+    "venue": "Away",
+    "competition": "Continental",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-25",
+    "date": "2026-01-30",
+    "opponent": "Munich Red",
+    "venue": "Home",
+    "competition": "League",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-26",
+    "date": "2026-02-06",
+    "opponent": "Turin Zebra",
+    "venue": "Away",
+    "competition": "Cup",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-27",
+    "date": "2026-02-13",
+    "opponent": "Lisbon Eagles",
+    "venue": "Home",
+    "competition": "Continental",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-28",
+    "date": "2026-02-20",
+    "opponent": "Dortmund Yellow",
+    "venue": "Away",
+    "competition": "League",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-29",
+    "date": "2026-02-27",
+    "opponent": "Amsterdam Ajax",
+    "venue": "Home",
+    "competition": "Cup",
+    "score": null,
+    "status": "Scheduled"
+  },
+  {
+    "id": "fx-30",
+    "date": "2026-03-06",
+    "opponent": "Naples Sky",
+    "venue": "Away",
+    "competition": "Continental",
+    "score": null,
+    "status": "Scheduled"
+  }
+]

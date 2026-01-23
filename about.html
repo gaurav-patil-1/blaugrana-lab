@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Blaugrana Lab — About &amp; Contact</title>
+  <meta name="description" content="About this playground and an accessible contact form with validation + fake submission." />
+
+  <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header" data-include="./partials/header.html"></div>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <span>About &amp; Contact</span>
+        </nav>
+
+        <h1>About this playground</h1>
+        <p class="lead">
+          A Barcelona-inspired palette, a #10 storytelling vibe, and a lot of intentionally “instrumentable” UI.
+          Built as a static site for GitHub Pages — no backend needed.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Design notes</h2>
+              <span class="chip">Accessibility</span>
+            </div>
+            <ul>
+              <li>Keyboard-friendly modal + tabs</li>
+              <li>Skip link + focus ring</li>
+              <li>ARIA attributes where needed</li>
+              <li>Dark mode persisted in localStorage</li>
+            </ul>
+            <div class="alert">
+              <strong>Not affiliated:</strong> No official club crests/logos and no copyrighted photos are used.
+              All visuals are custom SVG created for this repo.
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Contact (fake)</h2>
+              <span class="chip">Validation + toast</span>
+            </div>
+
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="c-name">Name</label>
+                  <input id="c-name" name="name" type="text" autocomplete="name" data-required aria-invalid="false" />
+                  <div class="help">Required.</div>
+                </div>
+                <div class="field">
+                  <label for="c-email">Email</label>
+                  <input id="c-email" name="email" type="email" autocomplete="email" data-required aria-invalid="false" />
+                  <div class="help">Required. Must look like an email.</div>
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label for="c-reason">Reason</label>
+                <select id="c-reason" name="reason" data-required aria-invalid="false">
+                  <option value="">Select…</option>
+                  <option value="rum">RUM / profiling question</option>
+                  <option value="bug">Bug report</option>
+                  <option value="idea">Idea / suggestion</option>
+                </select>
+              </div>
+
+              <div class="field" style="margin-top:12px;">
+                <label for="c-msg">Message</label>
+                <textarea id="c-msg" name="message" rows="5" data-required aria-invalid="false"
+                  placeholder="Write something… (this is a static demo)"></textarea>
+              </div>
+
+              <div class="btn-row" style="margin-top:12px;">
+                <button class="btn btn-primary" type="submit">Send (fake)</button>
+                <button class="btn btn-ghost" type="reset">Reset</button>
+              </div>
+            </form>
+
+            <p class="small muted" style="margin-top:12px;">
+              This form does not submit anywhere. It emits a tracepoint and shows a toast for testing.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-header">
+            <h2 class="card-title">Try the DataLayer</h2>
+            <span class="chip">cpRumTag</span>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" type="button" onclick="cpRumTag('tracepoint','about','clicked'); window.CPRUM && window.CPRUM.toast('Tracepoint stored in HUD','ok');">
+              Push tracepoint
+            </button>
+            <button class="btn" type="button" onclick="cpRumTag('pageGroup','About/Contact'); window.CPRUM && window.CPRUM.toast('PageGroup set','info');">
+              Set pageGroup
+            </button>
+          </div>
+
+          <hr />
+
+          <div class="small muted">Debug HUD snapshot</div>
+          <pre class="status-box" style="min-height: 150px;">
+Logging: <span data-debug-logging>—</span>
+PageGroup: <span data-debug-pagegroup>—</span>
+Tracepoints:
+<span data-debug-tracepoints>—</span></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer" data-include="./partials/footer.html"></div>
+
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/audio.js" defer></script>
+  <script src="./assets/js/contact.js" defer></script>
+</body>
+</html>

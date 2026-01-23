@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Blaugrana Lab — Legends</title>
+  <meta name="description" content="Messi-era inspired timeline with cards, timeline layout, and modal detail view." />
+
+  <link rel="icon" href="./assets/img/illustrations/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('theme') || 'system';
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = mode === 'dark' || (mode === 'system' && prefersDark);
+        document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+    window.cpRumTag = window.cpRumTag || function(){ window.CPRUMDataLayer.push(arguments); };
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="site-header" data-include="./partials/header.html"></div>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="./index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <span>Legends</span>
+        </nav>
+
+        <h1>Legends: the #10 era timeline</h1>
+        <p class="lead">
+          Cards + a timeline layout + modal detail view. Data is fetched from <code>/data/legends.json</code>
+          to generate real network + rendering work.
+        </p>
+
+        <div class="table-controls" aria-label="Timeline filters">
+          <input id="legend-search" type="search" placeholder="Search milestones…" aria-label="Search milestones" />
+          <select id="legend-stage" aria-label="Filter by stage">
+            <option value="all">All stages</option>
+            <option value="Rise">Rise</option>
+            <option value="Peak">Peak</option>
+            <option value="Legacy">Legacy</option>
+          </select>
+          <span class="chip">Showing <strong id="legend-count">0</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="grid grid-2">
+          <div>
+            <div id="timeline-skeleton" class="card skeleton" style="height: 220px; border-radius: 18px;"></div>
+            <div id="timeline" class="grid" style="gap:12px;"></div>
+          </div>
+
+          <aside class="grid" style="gap:12px;">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Timeline notes</h2>
+                <span class="chip">Modal + focus trap</span>
+              </div>
+              <p class="muted">
+                Click <strong>Details</strong> on a milestone to open a modal. Use <kbd>Esc</kbd> to close.
+                Keyboard focus stays inside the modal (useful for accessibility &amp; interaction timing tests).
+              </p>
+              <div class="alert">
+                <strong>Disclaimer:</strong> This page references Lionel Messi by name for storytelling,
+                but uses no official logos and no photos.
+              </div>
+            </div>
+
+            <div class="accordion" data-accordion>
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="true" aria-controls="l-acc-1">
+                  Profiler ideas
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="l-acc-1">
+                  <ul>
+                    <li>Track clicks on timeline cards and modal opens/closes.</li>
+                    <li>Observe fetch timing for <code>/data/legends.json</code>.</li>
+                    <li>Measure layout shifts when cards render.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="l-acc-2">
+                  Quick cpRumTag examples
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="l-acc-2" hidden>
+                  <pre class="status-box"><code>cpRumTag('logging', true)
+cpRumTag('tracepoint', 'milestone', 'm-2011-2012')
+cpRumTag('pageGroup', 'Legends')</code></pre>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="l-acc-3">
+                  Where is the data?
+                  <span class="icon" aria-hidden="true">›</span>
+                </button>
+                <div class="accordion-panel" id="l-acc-3" hidden>
+                  Edit <code>/data/legends.json</code> to add/remove milestones. The UI updates automatically.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer" data-include="./partials/footer.html"></div>
+
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/audio.js" defer></script>
+  <script src="./assets/js/legends.js" defer></script>
+</body>
+</html>
