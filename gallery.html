@@ -88,7 +88,18 @@
   <script src="./assets/js/app.js" defer></script>
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/gallery.js" defer></script>
+
   <script defer src='https://portalstage.catchpoint.com/jp/139490/latest/InitialLoadScript.js'></script>
+
+  <script>
+    window.CPRUMDataLayer = window.CPRUMDataLayer || [];
+
+    function cpRumTag() {
+      CPRUMDataLayer.push(arguments);
+    }
+
+    cpRumTag('pageGroup', 'Gallery');
+  </script>
 </body>
 
 </html>
