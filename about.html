@@ -155,11 +155,12 @@ Tracepoints:
     window.CPRUMDataLayer = window.CPRUMDataLayer || [];
 
     function cpRumTag() {
-      CPRUMDataLayer.push(arguments);
+      window.CPRUMDataLayer.push(arguments);
     }
 
-    cpRumTag('pageGroup', 'about', 'About');
+    cpRumTag('benchmarkLog', false);
   </script>
+
 </body>
 
 </html>

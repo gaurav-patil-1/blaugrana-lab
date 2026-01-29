@@ -270,10 +270,10 @@
     window.CPRUMDataLayer = window.CPRUMDataLayer || [];
 
     function cpRumTag() {
-      CPRUMDataLayer.push(arguments);
+      window.CPRUMDataLayer.push(arguments);
     }
 
-    cpRumTag('pageGroup', 'home', 'Home');
+    cpRumTag('benchmarkLog', true);
   </script>
 </body>
 
