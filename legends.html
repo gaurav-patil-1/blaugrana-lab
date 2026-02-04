@@ -138,16 +138,61 @@ European Golden Shoes: 6</code></pre>
   <script src="./assets/js/audio.js" defer></script>
   <script src="./assets/js/legends.js" defer></script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- InitialLoadScript -->
   <script defer src='https://portalstage.catchpoint.com/jp/139490/latest/InitialLoadScript.js'></script>
+  <script defer src='https://localhost:44394/jp/139490/latest/InitialLoadScript.js'></script>
+
+  <!-- lastMileScript -->
+  <script defer src='https://portalstage.catchpoint.com/jp/145445/latest/lastMileScript.js'></script>
+  <script defer src='https://localhost:44394/jp/145445/latest/lastMileScript.js'></script>
+
   <script>
     window.CPRUMDataLayer = window.CPRUMDataLayer || [];
 
     function cpRumTag() {
-      CPRUMDataLayer.push(arguments);
+      window.CPRUMDataLayer.push(arguments);
     }
 
-    cpRumTag('pageGroup', 'legends', 'Legends');
+    cpRumTag('indicator', 'adsrendered', 2345);
+    cpRumTag('pageGroup', 'legends');
+    cpRumTag('appError', 10, 'undefined error');
+    cpRumTag('conversion', 20, 1200);
+    cpRumTag('tracepoint', 'tracepoint', 'tracepoint mesg');
+    cpRumTag('variation', 'variation');
+    cpRumTag('usePageHide', false);
+    // cpRumTag('excludeBenchMarks');
+    cpRumTag('consentv2', { analytics_storage: 'granted' })
+    cpRumTag('benchmarkLog', true);
   </script>
+
 </body>
 
 </html>
